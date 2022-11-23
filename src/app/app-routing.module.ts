@@ -9,7 +9,8 @@ const routes: Routes = [
     path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.value, children:
       [
         {
-          path: '', component: OverviewComponent
+          path: '',
+          loadChildren: () => import('./landing-page/overview/overview.component').then(m => m.OverviewComponent)
         },
       ]
   },
