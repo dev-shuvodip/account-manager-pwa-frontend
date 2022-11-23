@@ -1,0 +1,29 @@
+.sidenav-content {
+  display: flex;
+  height: 100%;
+}
+
+.sidenav {
+  padding: 20px;
+  min-width: 20%;
+}
+
+.quick-link-header {
+  width: inherit;
+}
+.QNLheader {
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.clsBtn {
+  cursor: pointer;
+}
+
+.title-container {
+  width: fit-content;
+}
+
+.QNL-header-spacer {
+  flex: 1 1;
+}

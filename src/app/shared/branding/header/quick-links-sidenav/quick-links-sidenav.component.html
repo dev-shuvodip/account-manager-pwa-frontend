@@ -1,0 +1,47 @@
+<mat-sidenav-container
+  role="dialog"
+  aria-label="Quick Links"
+  [hasBackdrop]="true"
+  cdkTrapFocus
+>
+  <mat-sidenav
+    class="sidenav"
+    #sidenav
+    [fixedInViewport]="true"
+    mode="over"
+    position="end"
+  >
+    <div class="row quick-link-header">
+      <h4
+        aria-label="Quick Navigation Links"
+        class="QNLheader title-container float-left"
+      >
+        <b>Quick Links</b>
+      </h4>
+      <span class="QNL-header-spacer"></span>
+      <button
+        type="button"
+        aria-label="Close"
+        class="btn-close QNLheader clsBtn"
+        (click)="sidenav.toggle()"
+      ></button>
+    </div>
+    <mat-nav-list>
+      <a
+        tabindex="0"
+        mat-list-item
+        style="cursor: pointer"
+        *ngFor="let route of routesModule"
+        attr.aria-label="{{
+          route?.displayText
+        }}. Press enter to navigate to the page"
+        attr.data-link="/{{ route?.key }}"
+        (click)="Navigate($event)"
+        (keyup.enter)="Navigate($event)"
+      >
+        {{ route?.displayText }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content"> </mat-sidenav-content>
+</mat-sidenav-container>
