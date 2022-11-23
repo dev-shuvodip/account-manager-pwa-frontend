@@ -6,13 +6,8 @@ import CommonConstants from './shared/common-constants';
 const routes: Routes = [
   { path: '', redirectTo: '/Landing', pathMatch: 'full' },
   {
-    path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.value, children:
-      [
-        {
-          path: '',
-          loadChildren: () => import('./landing-page/overview/overview.component').then(m => m.OverviewComponent)
-        },
-      ]
+    path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.value,
+    loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule)
   },
   {
     path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.AddTransaction)?.value,
@@ -22,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash: true, relativeLinkResolution:'legacy'})],
+  imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
