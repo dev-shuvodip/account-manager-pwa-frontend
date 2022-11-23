@@ -1,0 +1,10 @@
+.header {
+  position: fixed;
+  width: 100%;
+}
+
+.body-container {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}

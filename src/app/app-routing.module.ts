@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule)
   },
   {
-    path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.AddTransaction)?.value,
+    path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.TransactionManagement)?.value,
     loadChildren: () => import('./add-transaction/add-transaction.module').then(m => m.AddTransactionModule)
   },
   { path: '**', redirectTo: '/Landing', pathMatch: 'full' }
