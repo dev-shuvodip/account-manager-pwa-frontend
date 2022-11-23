@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-ghPages": "ng build --base-href=/account-manager-client/",
+    "build-dist": "ng build --output-path dist/account-manager-client --base-href=/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
