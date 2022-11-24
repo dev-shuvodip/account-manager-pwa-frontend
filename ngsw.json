@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1669314812092,
+  "timestamp": 1669314995635,
   "index": "/account-manager-client/index.html",
   "assetGroups": [
     {
@@ -17,7 +17,7 @@
         "/account-manager-client/987.5564ebe0d0b5844a.js",
         "/account-manager-client/favicon.ico",
         "/account-manager-client/index.html",
-        "/account-manager-client/main.85ae54e21d3a739f.js",
+        "/account-manager-client/main.b126770885383432.js",
         "/account-manager-client/manifest.webmanifest",
         "/account-manager-client/polyfills.14aebd60446145be.js",
         "/account-manager-client/runtime.1c7873dd67e536fc.js",
@@ -60,8 +60,8 @@
     "/account-manager-client/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/account-manager-client/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/account-manager-client/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/account-manager-client/index.html": "1dc53c4ef61a80ff685013421e51915149c16c74",
-    "/account-manager-client/main.85ae54e21d3a739f.js": "d9855e2665a25f2102ebfaaaab3e5795791a7b3a",
+    "/account-manager-client/index.html": "7c957b374f2b8899339634de5b4443f6ad99b909",
+    "/account-manager-client/main.b126770885383432.js": "4ed0dc02f36085ba80f45608935beb842902f835",
     "/account-manager-client/manifest.webmanifest": "3087ee759e4e466a4da02e73a4dc1540f23084bb",
     "/account-manager-client/polyfills.14aebd60446145be.js": "be5a8e84732271ef9fa2d9114afd76017f4f7614",
     "/account-manager-client/runtime.1c7873dd67e536fc.js": "a42bee6ceeaf16dc4f3a1d7c5763fd7d6dd9c6b2",
