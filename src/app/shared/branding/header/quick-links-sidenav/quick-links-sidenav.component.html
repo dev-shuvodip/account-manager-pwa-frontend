@@ -4,12 +4,7 @@
   [hasBackdrop]="true"
   cdkTrapFocus
 >
-  <mat-sidenav
-    class="sidenav"
-    #sidenav
-    [fixedInViewport]="true"
-    mode="over"
-  >
+  <mat-sidenav class="sidenav" #sidenav [fixedInViewport]="true" mode="over">
     <div class="row quick-link-header">
       <h4
         aria-label="Quick Navigation Links"
@@ -19,7 +14,7 @@
       </h4>
       <span class="QNL-header-spacer"></span>
       <button
-        mat-mini-fab
+        mat-icon-button
         type="button"
         aria-label="Close"
         class="QNLheader clsBtn"
