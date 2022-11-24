@@ -5,8 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-ghPages": "ng build --output-hashing none --base-href=/account-manager-client/",
+    "build-gh-pages": "ng build --output-hashing none --base-href=/account-manager-client/",
     "build-dist": "ng build --output-hashing none --output-path dist/account-manager-client --base-href=/",
+    "deploy-gh-pages": "ng deploy --base-href=/account-manager-client/ --repo=https://github.com/dev-shuvodip/account-manager-client.git --name=\"dev-shuvodip\" --email=chrispbacon961@gmail.com",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -25,9 +26,11 @@
     "@angular/router": "^14.1.0",
     "@ng-bootstrap/ng-bootstrap": "^13.1.1",
     "@popperjs/core": "^2.10.2",
+    "angular-cli-ghpages": "^1.0.5",
     "bootstrap": "^5.2.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
