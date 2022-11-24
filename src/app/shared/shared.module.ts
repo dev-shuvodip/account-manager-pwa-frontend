@@ -13,7 +13,8 @@ import { QuickLinksSidenavComponent } from './branding/header/quick-links-sidena
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    QuickLinksSidenavComponent
   ],
   imports: [
     CommonModule,
