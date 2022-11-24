@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1669317785280,
+  "timestamp": 1669321142871,
   "index": "/account-manager-client/index.html",
   "assetGroups": [
     {
@@ -62,7 +62,7 @@
     "/account-manager-client/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/account-manager-client/index.html": "c2e95c591047374a247630fcf6dba293b70a2ae0",
     "/account-manager-client/main.ae54baad6fb2b1ee.js": "b85431673780d0f0746975ee6064c8a5bf22ac8e",
-    "/account-manager-client/manifest.webmanifest": "3087ee759e4e466a4da02e73a4dc1540f23084bb",
+    "/account-manager-client/manifest.webmanifest": "b38716aeb690403115f840d4469cd35fa3d41435",
     "/account-manager-client/polyfills.14aebd60446145be.js": "be5a8e84732271ef9fa2d9114afd76017f4f7614",
     "/account-manager-client/runtime.1c7873dd67e536fc.js": "a42bee6ceeaf16dc4f3a1d7c5763fd7d6dd9c6b2",
     "/account-manager-client/styles.446136dd5316cd2d.css": "31365e63b9b7b25145a0a4d8c8d0de898ee4cbfb"
