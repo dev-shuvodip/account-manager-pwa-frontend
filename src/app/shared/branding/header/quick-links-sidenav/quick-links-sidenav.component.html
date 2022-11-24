@@ -43,7 +43,7 @@
         attr.aria-label="{{
           route?.displayText
         }}. Press enter to navigate to the page"
-        attr.data-link="/{{ route?.key }}"
+        attr.data-link="{{ route?.key }}"
         (click)="Navigate($event)"
         (keyup.enter)="Navigate($event)"
       >
