@@ -6,24 +6,38 @@
 .sidenav {
   padding: 20px;
   min-width: 20%;
+  font-family: Segoe UI Emoji;
 }
 
 .quick-link-header {
   width: inherit;
+  font-family: Segoe UI Emoji;
 }
 .QNLheader {
   margin-bottom: 20px;
-  margin-top: 5px;
+  font-family: Segoe UI Emoji;
 }
 
 .clsBtn {
   cursor: pointer;
+  background-color: rgb(249, 249, 249);
 }
 
 .title-container {
   width: fit-content;
+  margin-top: 5px;
 }
 
 .QNL-header-spacer {
   flex: 1 1;
+}
+
+.route-container {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
 }

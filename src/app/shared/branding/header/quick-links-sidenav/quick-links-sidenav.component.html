@@ -20,22 +20,30 @@
       </h4>
       <span class="QNL-header-spacer"></span>
       <button
+        mat-mini-fab
         type="button"
         aria-label="Close"
-        class="btn-close QNLheader clsBtn"
+        class="QNLheader clsBtn"
+        aria-label="Example icon button with a filter list icon"
         (click)="sidenav.toggle()"
-      ></button>
+      >
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
     <mat-nav-list>
       <a
+        class="route-container"
         tabindex="0"
         mat-list-item
-        style="cursor: pointer"
+        matRipple
+        [matRippleCentered]="false"
+        [matRippleDisabled]="false"
+        [matRippleUnbounded]="false"
         *ngFor="let route of routesModule"
         attr.aria-label="{{
           route?.displayText
         }}. Press enter to navigate to the page"
-        attr.data-link="/{{ route?.key }}"
+        attr.data-link="{{ route?.key }}"
         (click)="Navigate($event)"
         (keyup.enter)="Navigate($event)"
       >
