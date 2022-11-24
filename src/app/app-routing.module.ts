@@ -13,6 +13,10 @@ const routes: Routes = [
     path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.TransactionManagement)?.value,
     loadChildren: () => import('./add-transaction/add-transaction.module').then(m => m.AddTransactionModule)
   },
+  {
+    path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Reports)?.value,
+    loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
+  },
   { path: '**', redirectTo: '/Landing', pathMatch: 'full' }
 ];
 

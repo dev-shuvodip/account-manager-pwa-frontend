@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import CommonConstants from '../shared/common-constants';
 
 @Component({
   selector: 'app-add-transaction',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-transaction.component.css']
 })
 export class AddTransactionComponent {
+
+  pageTitle?: string = CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.TransactionManagement)?.displayText;
 
 }
