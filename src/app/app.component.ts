@@ -13,13 +13,6 @@ export class AppComponent {
 
   ngOnInit() {
     if (this.swUpdate.isEnabled) {
-      // this.swUpdate.checkForUpdate().then((updateAvailable) => {
-      //   if (updateAvailable) {
-      //     if (confirm("You're using an old version of the control panel. Want to update?")) {
-      //       window.location.reload();
-      //     }
-      //   }
-      // });
       interval(600000).subscribe(() => {
         console.log('UpdateService: Checking for Updates')
         this.swUpdate.checkForUpdate();
