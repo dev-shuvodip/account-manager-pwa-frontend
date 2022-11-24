@@ -1,6 +1,6 @@
 {
-  "name": "account-manager-client",
-  "short_name": "account-manager-client",
+  "name": "Account Manager",
+  "short_name": "amc-app",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
