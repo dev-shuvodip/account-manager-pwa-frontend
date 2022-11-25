@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "account-manager-client": {
+    "account-manager-pwa-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "account-manager-client:build:production"
+              "browserTarget": "account-manager-pwa-frontend:build:production"
             },
             "development": {
-              "browserTarget": "account-manager-client:build:development"
+              "browserTarget": "account-manager-pwa-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "account-manager-client:build"
+            "browserTarget": "account-manager-pwa-frontend:build"
           }
         },
         "test": {

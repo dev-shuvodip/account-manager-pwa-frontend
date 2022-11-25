@@ -1,13 +1,13 @@
 {
-  "name": "account-manager-client",
+  "name": "account-manager-pwa-frontend",
   "version": "0.4.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-gh-pages": "ng build --base-href=/account-manager-client/",
-    "build-dist": "ng build --output-path dist/account-manager-client --base-href=/",
-    "deploy-gh-pages": "ng deploy --base-href=/account-manager-client/ --repo=https://github.com/dev-shuvodip/account-manager-client.git --name=\"dev-shuvodip\" --email=chrispbacon961@gmail.com",
+    "build-gh-pages": "ng build --base-href=/account-manager-pwa-frontend/",
+    "build-dist": "ng build --output-path dist/account-manager-pwa-frontend --base-href=/",
+    "deploy-gh-pages": "ng deploy --base-href=/account-manager-pwa-frontend/ --repo=https://github.com/dev-shuvodip/account-manager-pwa-frontend.git --name=\"dev-shuvodip\" --email=chrispbacon961@gmail.com",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
