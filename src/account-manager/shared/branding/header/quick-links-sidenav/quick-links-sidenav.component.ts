@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
-import { SharedService } from 'src/app/shared/service/shared.service';
+import { SharedService } from 'src/account-manager/shared/service/shared.service';
 
 @Component({
   selector: 'app-quick-links-sidenav',

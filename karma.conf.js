@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/account-manager-client'),
+      dir: require('path').join(__dirname, './coverage/account-manager-pwa-frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -3,11 +3,11 @@ import { SwUpdate } from '@angular/service-worker';
 import { interval } from 'rxjs';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'account-manager-root',
+  templateUrl: './account-manager.component.html',
+  styleUrls: ['./account-manager.component.css']
 })
-export class AppComponent {
+export class AccountManagerComponent {
 
   constructor(private swUpdate: SwUpdate) { }
 
