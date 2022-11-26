@@ -2,15 +2,19 @@
   <ng-container *ngIf="isLoading">
     <loading-spinner></loading-spinner>
   </ng-container>
-  <div class="form-container" *ngIf="!isLoading">
-    <mat-card>
-      <mat-card-content class="m-5">
-        <span class="card-content">
-          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-            <h4>{{ isLoginMode ? "Login" : "Sign Up" }}</h4>
+  <div *ngIf="!isLoading">
+    <mat-card class="form-container">
+      <mat-card-header>
+        <mat-card-title>
+          <h4>{{ isLoginMode ? "Login" : "Sign Up" }}</h4>
+        </mat-card-title>
+      </mat-card-header>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <mat-card-content>
+          <span class="card-content">
             <br />
             <section>
-              <mat-form-field appearance="outline" [style.width.vw]="20">
+              <mat-form-field appearance="outline" class="field-container">
                 <mat-label>Enter email</mat-label>
                 <input
                   matInput
@@ -24,7 +28,7 @@
               </mat-form-field>
             </section>
             <section>
-              <mat-form-field appearance="outline" [style.width.vw]="20">
+              <mat-form-field appearance="outline" class="field-container">
                 <mat-label>Enter password</mat-label>
                 <input
                   matInput
@@ -48,33 +52,33 @@
                 <mat-error></mat-error>
               </mat-form-field>
             </section>
-            <section>
-              <div class="form-button-row">
-                <button
-                  mat-raised-button
-                  type="submit"
-                  class="botton-overlay"
-                  color="primary"
-                  [disabled]="!loginForm.valid"
-                >
-                  {{ isLoginMode ? "Login" : "Sign Up" }}
-                </button>
-                <button
-                  mat-raised-button
-                  type="button"
-                  class="botton-overlay"
-                  color="primary"
-                  (click)="onModeSwitch()"
-                >
-                  {{
-                    isLoginMode ? "New user? Sign Up" : "Existing user? Login"
-                  }}
-                </button>
-              </div>
-            </section>
-          </form>
-        </span>
-      </mat-card-content>
+          </span>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <section>
+            <div class="form-button-row">
+              <button
+                mat-raised-button
+                type="submit"
+                class="botton-overlay"
+                color="primary"
+                [disabled]="!loginForm.valid"
+              >
+                {{ isLoginMode ? "Login" : "Sign Up" }}
+              </button>
+              <button
+                mat-raised-button
+                type="button"
+                class="botton-overlay"
+                color="primary"
+                (click)="onModeSwitch()"
+              >
+                {{ isLoginMode ? "New user? Sign Up" : "Existing user? Login" }}
+              </button>
+            </div>
+          </section></mat-card-actions
+        >
+      </form>
     </mat-card>
   </div>
 </div>
