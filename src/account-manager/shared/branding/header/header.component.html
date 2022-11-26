@@ -4,20 +4,24 @@
     class="nav-menu-icon"
     aria-label="Quick links menu. Press enter to view options"
     (click)="quickLinksSidenav.sideNav.toggle()"
+    *ngIf="isAuthenticated"
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span style="flex: 0 1 20px;"></span>
+  <span style="flex: 0 1 20px"></span>
   <span
     cdkFocusInitial
-    style="cursor: pointer"
+    [style.cursor]="isAuthenticated ? 'pointer' : 'default'"
     tabindex="0"
-    attr.data-link="/{{ pageTitle }}"
+    attr.data-link="{{ pageTitle }}"
     (click)="Navigate($event)"
     (keyup.enter)="Navigate($event)"
     aria-label="Account Manager App"
     >Account Manager</span
   >
   <span class="header-spacer"></span>
+  <ng-container *ngIf="isAuthenticated">
+    <button mat-button (click)="onLogout()">Logout</button>
+  </ng-container>
 </mat-toolbar>
 <app-quick-links-sidenav></app-quick-links-sidenav>

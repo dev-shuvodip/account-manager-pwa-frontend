@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { interval } from 'rxjs';
+import { AuthService } from '../shared/auth/services/auth.service';
 
 @Component({
   selector: 'account-manager-root',
@@ -9,9 +10,13 @@ import { interval } from 'rxjs';
 })
 export class AccountManagerComponent {
 
-  constructor(private swUpdate: SwUpdate) { }
+  constructor(
+    private swUpdate: SwUpdate,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.authService.autoLogin();
     if (this.swUpdate.isEnabled) {
       interval(600000).subscribe(() => {
         console.log('UpdateService: Checking for Updates')

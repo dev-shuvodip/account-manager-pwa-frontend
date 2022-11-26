@@ -1,0 +1,80 @@
+<div class="position-absolute top-50 start-50 translate-middle">
+  <ng-container *ngIf="isLoading">
+    <loading-spinner></loading-spinner>
+  </ng-container>
+  <div class="form-container" *ngIf="!isLoading">
+    <mat-card>
+      <mat-card-content class="m-5">
+        <span class="card-content">
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <h4>{{ isLoginMode ? "Login" : "Sign Up" }}</h4>
+            <br />
+            <section>
+              <mat-form-field appearance="outline" [style.width.vw]="20">
+                <mat-label>Enter email</mat-label>
+                <input
+                  matInput
+                  placeholder="pat@example.com"
+                  ngModel
+                  name="email"
+                  required
+                  email
+                />
+                <mat-error></mat-error>
+              </mat-form-field>
+            </section>
+            <section>
+              <mat-form-field appearance="outline" [style.width.vw]="20">
+                <mat-label>Enter password</mat-label>
+                <input
+                  matInput
+                  [type]="hide ? 'password' : 'text'"
+                  ngModel
+                  name="password"
+                  required
+                  minlength="6"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+                <mat-error></mat-error>
+              </mat-form-field>
+            </section>
+            <section>
+              <div class="form-button-row">
+                <button
+                  mat-raised-button
+                  type="submit"
+                  class="botton-overlay"
+                  color="primary"
+                  [disabled]="!loginForm.valid"
+                >
+                  {{ isLoginMode ? "Login" : "Sign Up" }}
+                </button>
+                <button
+                  mat-raised-button
+                  type="button"
+                  class="botton-overlay"
+                  color="primary"
+                  (click)="onModeSwitch()"
+                >
+                  {{
+                    isLoginMode ? "New user? Sign Up" : "Existing user? Login"
+                  }}
+                </button>
+              </div>
+            </section>
+          </form>
+        </span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,7 +1,12 @@
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  NgZone,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
-import { SharedService } from 'src/account-manager/shared/service/shared.service';
+import { SharedService } from 'src/account-manager/shared/services/shared.service';
 
 @Component({
   selector: 'app-quick-links-sidenav',
@@ -11,7 +16,11 @@ import { SharedService } from 'src/account-manager/shared/service/shared.service
 export class QuickLinksSidenavComponent implements OnInit {
   routesModule!: { key?: string, value?: string, displayText?: string }[];
 
-  constructor(private router: Router, private zone: NgZone, private sharedService: SharedService) { }
+  constructor(
+    private router: Router,
+    private zone: NgZone,
+    private sharedService: SharedService
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.routesModule = await this.sharedService.GetRoutes().then(routes => routes);

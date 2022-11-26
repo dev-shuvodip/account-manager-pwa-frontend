@@ -1,5 +1,6 @@
 export default class CommonConstants {
     //#region Routes
+    static readonly Authenticate: string = "Authenticate";
     static readonly Landing: string = "Landing";
     static readonly TransactionManagement: string = "TransactionManagement";
     static readonly Reports: string = "Reports";
