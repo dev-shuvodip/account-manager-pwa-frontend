@@ -3,12 +3,12 @@
   max-width: 600px;
 }
 
-.field-container{
+.field-container {
   width: 50vw;
 }
 
 mat-card-actions {
-  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 section {
@@ -23,6 +23,12 @@ section {
   margin: 8px 8px 8px 0;
 }
 
-.botton-overlay {
-  margin-right: 20px;
+/* .botton-overlay {
+  margin: 3px 2px 2px 0 !important;
+} */
+
+.mat-card-actions .mat-button,
+.mat-card-actions .mat-raised-button,
+.mat-card-actions .mat-stroked-button {
+  margin: 3px 2px 2px 3px !important;
 }

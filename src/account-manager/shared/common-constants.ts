@@ -15,4 +15,10 @@ export default class CommonConstants {
     ];
 
     //#endregion
+
+    //#region Messages
+    static readonly Author = "Shuvodip Ray"
+    static readonly CopyrightMessage = "All Rights Reserved"
+    //#endregion
+
 }
