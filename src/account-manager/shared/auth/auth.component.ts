@@ -35,7 +35,7 @@ import { AuthService } from "./services/auth.service";
 
 export class AuthComponent implements OnInit {
     hide: boolean = true;
-    isLoginMode: boolean = false;
+    isLoginMode: boolean = true;
     isLoading: boolean = false;
     error: string | null = null;
     isAuthenticated: boolean = false;
