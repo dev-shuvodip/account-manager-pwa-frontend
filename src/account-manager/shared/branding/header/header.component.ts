@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
+    this.quickLinksSidenav.sideNav.close()
     this.authService.logout();
     this._snackBar.openFromComponent(
       SnackbarComponent,

@@ -159,20 +159,24 @@ export class AuthService {
     async AuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
         try {
             const result = await this.afAuth
-                .signInWithPopup(provider).then(async (response) => {
+                .signInWithPopup(provider).then(
+                    async (response) => {
+                        const user = new User(
+                            response.user.email,
+                            response.user.uid,
+                            await response.user.getIdToken().then(token => token),
+                            response.user.refreshToken,
+                            new Date((await response.user.getIdTokenResult()).expirationTime),
+                            response.user.displayName
+                        )
 
-                    const user = new User(
-                        response.user.email,
-                        response.user.uid,
-                        await response.user.getIdToken().then(token => token),
-                        response.user.refreshToken,
-                        new Date(new Date().getTime() + 3600 * 1000),
-                        response.user.displayName
-                    )
-
-                    this.user.next(user);
-                    localStorage.setItem('user_data', JSON.stringify(user));
-                });
+                        this.user.next(user);
+                        this.autoLogout(
+                            new Date((await response.user.getIdTokenResult()).expirationTime).getTime() - new Date().getTime()
+                        );
+                        localStorage.setItem('user_data', JSON.stringify(user));
+                    });
+            
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
@@ -181,7 +185,6 @@ export class AuthService {
                 }
             );
         } catch (error) {
-            console.log(error);
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {

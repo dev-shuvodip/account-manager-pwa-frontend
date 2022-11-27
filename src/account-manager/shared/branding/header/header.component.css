@@ -7,7 +7,12 @@
 }
 
 .icon-overlay {
-  padding-left: 2px !important;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.nav-menu-icon{
+  margin-right: 10px;
 }
 
 /* .mat-drawer-inner-container {

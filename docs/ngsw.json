@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1669561711058,
+  "timestamp": 1669581835526,
   "index": "/account-manager-pwa-frontend/index.html",
   "assetGroups": [
     {
@@ -18,10 +18,10 @@
         "/account-manager-pwa-frontend/889.146e839b1396acad.js",
         "/account-manager-pwa-frontend/favicon.ico",
         "/account-manager-pwa-frontend/index.html",
-        "/account-manager-pwa-frontend/main.1f885a1f371907bf.js",
+        "/account-manager-pwa-frontend/main.a6f2dd4ca2f34687.js",
         "/account-manager-pwa-frontend/manifest.webmanifest",
         "/account-manager-pwa-frontend/polyfills.df24a2411fa6f16b.js",
-        "/account-manager-pwa-frontend/runtime.84c9a5b04a555bc9.js",
+        "/account-manager-pwa-frontend/runtime.4fd8a50f80e2c25e.js",
         "/account-manager-pwa-frontend/styles.446136dd5316cd2d.css"
       ],
       "patterns": []
@@ -64,11 +64,11 @@
     "/account-manager-pwa-frontend/assets/icons/icon-72x72.png": "ff02608627c8125ed013fff5465da0b4a364fa22",
     "/account-manager-pwa-frontend/assets/icons/icon-96x96.png": "567d6cb36be826ebb488c2cc347abe5aa5bf3efb",
     "/account-manager-pwa-frontend/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/account-manager-pwa-frontend/index.html": "2ffcc03da4237cef80d26ce4a5de1d4faa73ca7b",
-    "/account-manager-pwa-frontend/main.1f885a1f371907bf.js": "e616f044ab5f543fa3c87f4d2e9068d920d71f0f",
+    "/account-manager-pwa-frontend/index.html": "054aebf5e30f42ae1381d0043df3af47c212aeff",
+    "/account-manager-pwa-frontend/main.a6f2dd4ca2f34687.js": "a7fa6634f9b25b6ceb45ca3e5370a5c860c3cc1e",
     "/account-manager-pwa-frontend/manifest.webmanifest": "dc5156b005b457ea799c2b38f10acc1cab5820fa",
     "/account-manager-pwa-frontend/polyfills.df24a2411fa6f16b.js": "4bd7122f37ec1ba7dd477eba3443a5c7dd7b4784",
-    "/account-manager-pwa-frontend/runtime.84c9a5b04a555bc9.js": "bd5591f54959a436e0ecb5a5dd296347146f18cf",
+    "/account-manager-pwa-frontend/runtime.4fd8a50f80e2c25e.js": "1cf2a95d3560eb61a44f0bd4b7cb33b75057cb53",
     "/account-manager-pwa-frontend/styles.446136dd5316cd2d.css": "31365e63b9b7b25145a0a4d8c8d0de898ee4cbfb"
   },
   "navigationUrls": [

@@ -13,7 +13,7 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span style="flex: 0 1 20px"></span>
+  <!-- <span style="flex: 0 1 20px"></span> -->
   <span
     cdkFocusInitial
     [style.cursor]="isAuthenticated ? 'pointer' : 'default'"
@@ -27,7 +27,7 @@
   <span class="header-spacer"></span>
   <ng-container *ngIf="isAuthenticated">
     <button mat-button class="button-overlay" (click)="onLogout()">
-      Logout<mat-icon class="icon-overlay">exit_to_app</mat-icon>
+      <mat-icon class="icon-overlay">logout</mat-icon>Logout
     </button>
   </ng-container>
 </mat-toolbar>

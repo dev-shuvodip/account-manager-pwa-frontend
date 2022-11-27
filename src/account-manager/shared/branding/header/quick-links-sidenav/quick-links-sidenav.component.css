@@ -4,8 +4,8 @@
 }
 
 .sidenav {
-  min-width: 20%;
-  padding-right: 5px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .quick-link-header {
@@ -37,4 +37,12 @@
 
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.mat-drawer-container {
+  z-index: -1 !important;
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 14px !important;
 }

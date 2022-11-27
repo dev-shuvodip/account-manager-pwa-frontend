@@ -3,6 +3,22 @@
   max-width: 600px;
 }
 
+.page-container {
+  max-height: calc(100vh - 100px);
+  max-width: calc(100vw - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .field-container {
   width: 50vw;
 }
@@ -30,7 +46,7 @@ section {
 .mat-card-actions .mat-button,
 .mat-card-actions .mat-raised-button,
 .mat-card-actions .mat-stroked-button {
-  margin: 3px 2px 2px 3px !important;
+  margin: 3px 2px 2px 0 !important;
 }
 
 .mat-card {
@@ -45,11 +61,11 @@ section {
   margin: 0;
 }
 
-.login-overlay {
-  padding: 2px !important;
-  transform: rotate(180deg);
+.icon-overlay {
+  margin-right: 2px;
+  vertical-align: middle;
 }
 
-.signup-overlay {
-  padding: 2px !important;
+.spacer-span {
+  margin-right: 10px;
 }
