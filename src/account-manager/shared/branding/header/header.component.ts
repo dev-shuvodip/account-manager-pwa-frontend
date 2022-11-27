@@ -41,25 +41,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
 
-  loadUserName(): string {
-    if (this.isAuthenticated) {
-      const userData: {
-        email: string;
-        id: string;
-        _token: string;
-        _refreshToken: string;
-        _tokenExpirationdate: string;
-        name?: string
-      } = JSON.parse(localStorage.getItem('user_data'));
-      if (!userData) {
-        this.displayName = "";
-      } else {
-        this.displayName = userData.name;
-      }
-    }
-    return this.displayName;
-  }
-
   Navigate(e: any) {
     this.zone.run(() => {
       this.router.navigate([e.currentTarget.dataset.link]);

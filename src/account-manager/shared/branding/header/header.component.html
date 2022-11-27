@@ -25,9 +25,6 @@
     >Account Manager</span
   >
   <span class="header-spacer"></span>
-  <ng-container *ngIf="isAuthenticated && loadUserName()">
-    <h6>Hi, {{ loadUserName() }}</h6>
-  </ng-container>
   <ng-container *ngIf="isAuthenticated">
     <button mat-button class="button-overlay" (click)="onLogout()">
       Logout<mat-icon class="icon-overlay">exit_to_app</mat-icon>
