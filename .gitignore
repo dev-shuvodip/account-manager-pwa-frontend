@@ -36,6 +36,8 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/firebase.config.ts
+/account-manager-pwa-backend-firebase-adminsdk-glry4-94227a28ec.json
 
 # System files
 .DS_Store

@@ -2,6 +2,19 @@
   flex: 1 1 auto;
 }
 
+.button-overlay {
+  margin-left: 5px;
+}
+
+.icon-overlay {
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.nav-menu-icon{
+  margin-right: 10px;
+}
+
 /* .mat-drawer-inner-container {
     overflow: hidden;
 } */

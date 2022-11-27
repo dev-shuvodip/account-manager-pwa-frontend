@@ -1,10 +1,28 @@
 {
   "name": "account-manager-pwa-frontend",
-  "version": "0.4.1",
+  "description": "Transaction management app in Angular and Firebase backend",
+  "version": "0.6.0",
+  "author": {
+    "name": "Shuvodip Ray",
+    "email": "shuvo.ray@gmail.com"
+  },
+  "keywords": [
+    "angular",
+    "pwa",
+    "firebase"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dev-shuvodip/account-manager-pwa-frontend"
+  },
+  "bugs": {
+    "url": "https://github.com/dev-shuvodip/account-manager-pwa-frontend/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "update-package-lock": "npm i --package-lock-only",
     "build-gh-pages": "ng build --base-href=/account-manager-pwa-frontend/",
     "build-dist": "ng build --output-path dist/account-manager-pwa-frontend --base-href=/",
     "deploy-gh-pages": "ng deploy --base-href=/account-manager-pwa-frontend/ --repo=https://github.com/dev-shuvodip/account-manager-pwa-frontend.git --name=\"dev-shuvodip\" --email=chrispbacon961@gmail.com",
@@ -19,6 +37,7 @@
     "@angular/compiler": "^14.1.0",
     "@angular/core": "^14.1.0",
     "@angular/elements": "^14.2.12",
+    "@angular/fire": "^7.5.0",
     "@angular/forms": "^14.1.0",
     "@angular/material": "^14.1.2",
     "@angular/platform-browser": "^14.1.0",

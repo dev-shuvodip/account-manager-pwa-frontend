@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1669406056285,
+  "timestamp": 1669582539649,
   "index": "/account-manager-pwa-frontend/index.html",
   "assetGroups": [
     {
@@ -11,16 +11,17 @@
         "ignoreVary": true
       },
       "urls": [
-        "/account-manager-pwa-frontend/4.6af866db94f9e9f1.js",
-        "/account-manager-pwa-frontend/717.6088d020cc2a718f.js",
-        "/account-manager-pwa-frontend/786.1d73213b81c498af.js",
-        "/account-manager-pwa-frontend/889.e4a032e10667a04c.js",
+        "/account-manager-pwa-frontend/4.1449655e7e4f6f1b.js",
+        "/account-manager-pwa-frontend/717.f7d6e0c452e8e977.js",
+        "/account-manager-pwa-frontend/786.5a3d1a57854e1d43.js",
+        "/account-manager-pwa-frontend/881.b7c6f339678c7ee0.js",
+        "/account-manager-pwa-frontend/889.146e839b1396acad.js",
         "/account-manager-pwa-frontend/favicon.ico",
         "/account-manager-pwa-frontend/index.html",
-        "/account-manager-pwa-frontend/main.115fb321845b857c.js",
+        "/account-manager-pwa-frontend/main.a6f2dd4ca2f34687.js",
         "/account-manager-pwa-frontend/manifest.webmanifest",
         "/account-manager-pwa-frontend/polyfills.df24a2411fa6f16b.js",
-        "/account-manager-pwa-frontend/runtime.32eaa3fb1810466b.js",
+        "/account-manager-pwa-frontend/runtime.4fd8a50f80e2c25e.js",
         "/account-manager-pwa-frontend/styles.446136dd5316cd2d.css"
       ],
       "patterns": []
@@ -33,6 +34,7 @@
         "ignoreVary": true
       },
       "urls": [
+        "/account-manager-pwa-frontend/assets/icons/Google__G__Logo.svg.png",
         "/account-manager-pwa-frontend/assets/icons/icon-128x128.png",
         "/account-manager-pwa-frontend/assets/icons/icon-144x144.png",
         "/account-manager-pwa-frontend/assets/icons/icon-152x152.png",
@@ -47,24 +49,26 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/account-manager-pwa-frontend/4.6af866db94f9e9f1.js": "7daa5554b5185a21617f4bac02561084edf844a2",
-    "/account-manager-pwa-frontend/717.6088d020cc2a718f.js": "77d83e87f779f281f82081e6a8908edd2ae07d14",
-    "/account-manager-pwa-frontend/786.1d73213b81c498af.js": "f39a39db80930493d5008bd6d7e9cc8358305b67",
-    "/account-manager-pwa-frontend/889.e4a032e10667a04c.js": "c812fde390eab6bf1ea7ff7918ca299eb47e1ed8",
-    "/account-manager-pwa-frontend/assets/icons/icon-128x128.png": "ed7e14d08c61a9c6dcc51f5b2d9e90ccd8cb3857",
-    "/account-manager-pwa-frontend/assets/icons/icon-144x144.png": "3591d29de05e2a6ed3d028442d2ca2548ad00cae",
-    "/account-manager-pwa-frontend/assets/icons/icon-152x152.png": "68031a86664196b127dd75a2fbd87b13366fcffe",
-    "/account-manager-pwa-frontend/assets/icons/icon-192x192.png": "88ab8121ce928430b67f8b4bcc6b9d7a344a302c",
-    "/account-manager-pwa-frontend/assets/icons/icon-384x384.png": "9e7f14a51a9710e0306d8024542646533b6f6108",
-    "/account-manager-pwa-frontend/assets/icons/icon-512x512.png": "a2465b70683116535452cf6431e7b71cce1bf5cd",
-    "/account-manager-pwa-frontend/assets/icons/icon-72x72.png": "9dc8a48be3c0b813bd22d67e34451bd36f3b340d",
-    "/account-manager-pwa-frontend/assets/icons/icon-96x96.png": "f1b79059e683fe63e66eb67004ae923246323c46",
+    "/account-manager-pwa-frontend/4.1449655e7e4f6f1b.js": "ecb17b3c253dbe18bfc6159d0d0e34ba11a9069a",
+    "/account-manager-pwa-frontend/717.f7d6e0c452e8e977.js": "6e10447c528ee94531f1437ef4610c1688373993",
+    "/account-manager-pwa-frontend/786.5a3d1a57854e1d43.js": "7358e5256ae6382a9f155cee2fa4b56d9131fa49",
+    "/account-manager-pwa-frontend/881.b7c6f339678c7ee0.js": "cf825eecfe7dcb8c839b998fbb2f94771a3ea0bd",
+    "/account-manager-pwa-frontend/889.146e839b1396acad.js": "7f79c3ccae3cf8b5bb5f56a31d22ea6c21171d6f",
+    "/account-manager-pwa-frontend/assets/icons/Google__G__Logo.svg.png": "826a21f0979c36e82d1192af535e5d25660231c4",
+    "/account-manager-pwa-frontend/assets/icons/icon-128x128.png": "cc51d48c08a2a2a18e44e0ca384091a135b1edcb",
+    "/account-manager-pwa-frontend/assets/icons/icon-144x144.png": "f2ab08530788869345f973e925760d4f3ceba61b",
+    "/account-manager-pwa-frontend/assets/icons/icon-152x152.png": "95b261b1944588ceb93629adc7c10849970520ff",
+    "/account-manager-pwa-frontend/assets/icons/icon-192x192.png": "9b3c6c3448d226c02fc2ecbc23b408085669fdac",
+    "/account-manager-pwa-frontend/assets/icons/icon-384x384.png": "fc43a9b5394b2dbd352c565c2c1431aaaf63dfce",
+    "/account-manager-pwa-frontend/assets/icons/icon-512x512.png": "37a648f1478e627611bea4ba31edae0ba903383b",
+    "/account-manager-pwa-frontend/assets/icons/icon-72x72.png": "ff02608627c8125ed013fff5465da0b4a364fa22",
+    "/account-manager-pwa-frontend/assets/icons/icon-96x96.png": "567d6cb36be826ebb488c2cc347abe5aa5bf3efb",
     "/account-manager-pwa-frontend/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/account-manager-pwa-frontend/index.html": "7832cc3d0d8545e556743441ab350085f1280785",
-    "/account-manager-pwa-frontend/main.115fb321845b857c.js": "b2226a6806943a2c9ba9fd51af567a38be279461",
-    "/account-manager-pwa-frontend/manifest.webmanifest": "dc5156b005b457ea799c2b38f10acc1cab5820fa",
+    "/account-manager-pwa-frontend/index.html": "054aebf5e30f42ae1381d0043df3af47c212aeff",
+    "/account-manager-pwa-frontend/main.a6f2dd4ca2f34687.js": "a7fa6634f9b25b6ceb45ca3e5370a5c860c3cc1e",
+    "/account-manager-pwa-frontend/manifest.webmanifest": "5d13cde3694b44f872879a1123a69e86e70cee9a",
     "/account-manager-pwa-frontend/polyfills.df24a2411fa6f16b.js": "4bd7122f37ec1ba7dd477eba3443a5c7dd7b4784",
-    "/account-manager-pwa-frontend/runtime.32eaa3fb1810466b.js": "d60aaea02d5c07d8b02803f24b582744d72396de",
+    "/account-manager-pwa-frontend/runtime.4fd8a50f80e2c25e.js": "1cf2a95d3560eb61a44f0bd4b7cb33b75057cb53",
     "/account-manager-pwa-frontend/styles.446136dd5316cd2d.css": "31365e63b9b7b25145a0a4d8c8d0de898ee4cbfb"
   },
   "navigationUrls": [

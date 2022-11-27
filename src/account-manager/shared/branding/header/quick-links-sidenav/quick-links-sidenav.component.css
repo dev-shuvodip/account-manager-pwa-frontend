@@ -4,19 +4,16 @@
 }
 
 .sidenav {
-  min-width: 20%;
-  font-family: Segoe UI Emoji;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .quick-link-header {
-  width: inherit;
-  padding: 10px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-left: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  font-family: Segoe UI Emoji;
-}
-.QNLheader {
-  font-family: Segoe UI Emoji;
 }
 
 .clsBtn {
@@ -40,4 +37,12 @@
 
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.mat-drawer-container {
+  z-index: -1 !important;
+}
+
+.mat-list-base .mat-list-item {
+  font-size: 14px !important;
 }

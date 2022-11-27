@@ -1,0 +1,97 @@
+<div class="position-absolute top-50 start-50 translate-middle page-container">
+  <ng-container *ngIf="isLoading">
+    <loading-spinner></loading-spinner>
+  </ng-container>
+  <div *ngIf="!isLoading" class="page-content">
+    <mat-card class="form-container">
+      <h4>{{ isLoginMode ? "Login" : "Sign Up" }}</h4>
+      <button
+        mat-raised-button
+        type="button"
+        class="botton-overlay"
+        color="primary"
+        (click)="onModeSwitch()"
+      >
+        {{
+          isLoginMode ? "New user? Sign Up here" : "Existing user? Login here"
+        }}
+      </button>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <mat-card-content>
+          <span class="card-content">
+            <br />
+            <section>
+              <mat-form-field appearance="outline" class="field-container">
+                <mat-label>Enter email</mat-label>
+                <input
+                  matInput
+                  placeholder="pat@example.com"
+                  ngModel
+                  name="email"
+                  required
+                  email
+                />
+                <mat-error></mat-error>
+              </mat-form-field>
+            </section>
+            <section>
+              <mat-form-field appearance="outline" class="field-container">
+                <mat-label>Enter password</mat-label>
+                <input
+                  matInput
+                  [type]="hide ? 'password' : 'text'"
+                  ngModel
+                  name="password"
+                  required
+                  minlength="6"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+                <mat-error></mat-error>
+              </mat-form-field>
+            </section>
+          </span>
+        </mat-card-content>
+        <mat-card-actions>
+          <section>
+            <div class="form-button-row">
+              <button
+                mat-raised-button
+                type="submit"
+                class="botton-overlay"
+                color="primary"
+                [disabled]="!loginForm.valid"
+              >
+                <ng-container *ngIf="isLoginMode; else elseBlock">
+                  <mat-icon class="icon-overlay">login</mat-icon>
+                </ng-container>
+                <ng-template #elseBlock>
+                  <mat-icon class="icon-overlay">person_add_alt</mat-icon>
+                </ng-template>
+                {{ isLoginMode ? "Login" : "Sign Up" }}
+              </button>
+              <span class="spacer-span"></span>
+              <button mat-raised-button (click)="loginWithGoogle()">
+                <img
+                  class="icon-overlay"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABpFBMVEUAAADrOzvqQjXqQzXqQzXqQzXqQzXqQzXqQzXqRDTsQjToRi7pRDbqQzbqQjXpQzbpQzfqQjXqQzXqQzT/AADpQjXqQzXqQzXvQDDpRDXpQzXqQzXqQzXrQzbnSTH/gADrRDbqQzXqQzXfQEDqQDLqQzXqQzXwcyLoRTX//wD7vAXqQzX/VVX6vgXrRTTtQDf7vQTxfCD6vAX8uwZChfRBhfP7vAb5vAZChfP6vgVBhPRBhPTyuwmErzRChvVChfRChfRBhPT6vQU0qFM1p09BhPPruws0qVRAv0BAhvJChfRChfRJgO1wrj4zp1M5qlVEh/hChfVChfUAgIA1qFMzqFMzp1I3pk4zqFM2oXdChfQ2qlU0qFM0qFM0qFM0qFM0qFM0qFNChPQyqFI0qFNChPRVqv80qFE0qFM0plkzmZkzs00zp1Q0qFM0qFM2p1IrqlU0qFQ1qFM0qFM0qFMzqFM0p1I0qFM0plHqQzX0kBbrRzP7vAX4pg7sVC76tQhChfTbuRFUq0eztSE8qFA0qFNBiOU1pWM+js80qFY8lK3////YBW63AAAAeXRSTlMADWGn2vL448WENguA88A5Ltf8egE68NIQIu320OAVAsjZVwgklf1oQwHVuAMz+hx3saNTvpi3Lq4vt6D7nWWIsoky9R1T6LoEKPj5DmupCSLbqwLH2loXeOb7Ie330cXb/oc477MDLNahCgp98dNRDF6l2PnkyY1FKSmxZQAAAAFiS0dEi/JvR+AAAAAHdElNRQfmCw0RIyARUCUdAAABHElEQVQoz2NggABGJmYWVjZ2Dk4uBmTAzcNbCQN8/AhxAcFKJCAkLAIVFxWrRAHiEhBxSSkIX1qGQxYsLgcRl1cACysqKQM5KqpqMHEGdbA4szKUqwET19Sqqq6s1NZhQAe6NTW1dXr6GOIMBjU1NfWGmOIMRkCJGmMI26QBDkwZzEAS5hgSFhAJSwwJK1xGWYMtt7GFSNjZg4ADSMKRwammprHJ2QXJOaYgCVcGTbfmltZWdw+4uKcXUNzbh4HBtxUE/Pyh4gGBIA1BQFZwCFgmNAwkFR4R2QYUj/IEqYmOAcu0xsbFJyS2trZ3NDQkQXQnp7Qig86u1DSouekZKDKZWXCXZOfkwoXz8lHCsqCwqDi3pLSsvCIYIgAA+F2KSzSyy6cAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMTEtMTNUMTc6MzU6MzIrMDA6MDC4gDd8AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTExLTEzVDE3OjM1OjMyKzAwOjAwyd2PwAAAAABJRU5ErkJggg=="
+                  alt=""
+                />
+                Sign in with Google
+              </button>
+            </div>
+          </section>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>

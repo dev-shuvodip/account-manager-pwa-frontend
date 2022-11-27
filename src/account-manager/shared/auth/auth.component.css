@@ -1,0 +1,71 @@
+.form-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+  max-width: 600px;
+}
+
+.page-container {
+  max-height: calc(100vh - 100px);
+  max-width: calc(100vw - 100px);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.field-container {
+  width: 50vw;
+}
+
+mat-card-actions {
+  margin-left: 0 !important;
+}
+
+section {
+  display: table;
+}
+
+.form-button-row {
+  display: table-cell;
+}
+
+.form-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+/* .botton-overlay {
+  margin: 3px 2px 2px 0 !important;
+} */
+
+.mat-card-actions .mat-button,
+.mat-card-actions .mat-raised-button,
+.mat-card-actions .mat-stroked-button {
+  margin: 3px 2px 2px 0 !important;
+}
+
+.mat-card {
+  margin: 10px !important;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-card-header-text {
+  margin: 0;
+}
+
+.icon-overlay {
+  margin-right: 2px;
+  vertical-align: middle;
+}
+
+.spacer-span {
+  margin-right: 10px;
+}
