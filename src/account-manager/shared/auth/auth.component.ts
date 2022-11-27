@@ -126,9 +126,11 @@ export class AuthComponent implements OnInit {
         form.reset();
     }
 
-    loginWithGoogle() {
-        this.authService.GoogleAuth().then(() => {
-            this.router.navigate([CommonConstants.Landing])
+    async loginWithGoogle() {
+        this.isLoading = true;
+        await this.authService.GoogleAuth().then(() => {
+            this.router.navigate([CommonConstants.Landing]);
+            this.isLoading = false;
         });
     }
 
