@@ -1,6 +1,10 @@
 {
   "name": "account-manager-pwa-frontend",
-  "version": "0.5.0",
+  "version": "0.6.0",
+  "author": {
+    "name": "Shuvodip Ray",
+    "email": "shuvo.ray@gmail.com"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
