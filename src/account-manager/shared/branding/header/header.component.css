@@ -2,6 +2,14 @@
   flex: 1 1 auto;
 }
 
+.button-overlay {
+  margin-left: 5px;
+}
+
+.icon-overlay {
+  padding-left: 2px !important;
+}
+
 /* .mat-drawer-inner-container {
     overflow: hidden;
 } */

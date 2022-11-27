@@ -4,7 +4,8 @@ export class User {
         public id: string,
         private _token: string,
         private _refreshToken: string,
-        private _tokenExpirationdate: Date
+        private _tokenExpirationdate: Date,
+        public name?: string
     ) { }
 
     get token() {

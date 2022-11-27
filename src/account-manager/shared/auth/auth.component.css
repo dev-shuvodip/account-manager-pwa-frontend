@@ -44,3 +44,12 @@ section {
 .mat-card-header-text {
   margin: 0;
 }
+
+.login-overlay {
+  padding: 2px !important;
+  transform: rotate(180deg);
+}
+
+.signup-overlay {
+  padding: 2px !important;
+}

@@ -166,7 +166,8 @@ export class AuthService {
                         response.user.uid,
                         await response.user.getIdToken().then(token => token),
                         response.user.refreshToken,
-                        new Date(new Date().getTime() + 3600 * 1000)
+                        new Date(new Date().getTime() + 3600 * 1000),
+                        response.user.displayName
                     )
 
                     this.user.next(user);

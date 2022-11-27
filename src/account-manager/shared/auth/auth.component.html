@@ -92,6 +92,12 @@
                 [disabled]="!loginForm.valid"
               >
                 {{ isLoginMode ? "Login" : "Sign Up" }}
+                <ng-container *ngIf="isLoginMode; else elseBlock">
+                  <mat-icon class="login-overlay">exit_to_app</mat-icon>
+                </ng-container>
+                <ng-template #elseBlock>
+                  <mat-icon class="signup-overlay">how_to_reg</mat-icon>
+                </ng-template>
               </button>
               <button mat-raised-button (click)="loginWithGoogle()">
                 <img

@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import CommonConstants from '../../common-constants';
 import { SharedService } from '../../services/shared.service';
@@ -24,6 +24,7 @@ import { QuickLinksSidenavComponent } from './quick-links-sidenav/quick-links-si
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSubscription!: Subscription;
   isAuthenticated: boolean = false;
+  displayName: string = "";
   @ViewChild(QuickLinksSidenavComponent, { static: true }) quickLinksSidenav!: QuickLinksSidenavComponent;
   pageTitle?: string = CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.displayText;
 
@@ -38,6 +39,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSubscription = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     })
+  }
+
+  loadUserName(): string {
+    if (this.isAuthenticated) {
+      const userData: {
+        email: string;
+        id: string;
+        _token: string;
+        _refreshToken: string;
+        _tokenExpirationdate: string;
+        name?: string
+      } = JSON.parse(localStorage.getItem('user_data'));
+      if (!userData) {
+        this.displayName = "";
+      } else {
+        this.displayName = userData.name;
+      }
+    }
+    return this.displayName;
   }
 
   Navigate(e: any) {

@@ -1,4 +1,9 @@
-<mat-toolbar color="primary" cdkTrapFocus [cdkTrapFocusAutoCapture]="true" style="height: 50px;">
+<mat-toolbar
+  color="primary"
+  cdkTrapFocus
+  [cdkTrapFocusAutoCapture]="true"
+  style="height: 50px"
+>
   <button
     mat-icon-button
     class="nav-menu-icon"
@@ -20,8 +25,13 @@
     >Account Manager</span
   >
   <span class="header-spacer"></span>
+  <ng-container *ngIf="isAuthenticated && loadUserName()">
+    <h6>Hi, {{ loadUserName() }}</h6>
+  </ng-container>
   <ng-container *ngIf="isAuthenticated">
-    <button mat-button (click)="onLogout()">Logout</button>
+    <button mat-button class="button-overlay" (click)="onLogout()">
+      Logout<mat-icon class="icon-overlay">exit_to_app</mat-icon>
+    </button>
   </ng-container>
 </mat-toolbar>
 <app-quick-links-sidenav></app-quick-links-sidenav>
