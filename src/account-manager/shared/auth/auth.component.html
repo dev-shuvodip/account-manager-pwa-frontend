@@ -1,14 +1,41 @@
-<div class="position-absolute top-50 start-50 translate-middle">
+<div
+  class="position-absolute top-50 start-50 translate-middle"
+  style="
+    max-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  "
+>
   <ng-container *ngIf="isLoading">
     <loading-spinner></loading-spinner>
   </ng-container>
-  <div *ngIf="!isLoading">
+  <div
+    *ngIf="!isLoading"
+    style="
+      height: 100%;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    "
+  >
     <mat-card class="form-container">
-      <mat-card-header>
-        <mat-card-title>
-          <h4>{{ isLoginMode ? "Login" : "Sign Up" }}</h4>
-        </mat-card-title>
-      </mat-card-header>
+      <div>
+        <h4>{{ isLoginMode ? "Login" : "Sign Up" }}</h4>
+        <button
+          mat-raised-button
+          type="button"
+          class="botton-overlay"
+          color="primary"
+          (click)="onModeSwitch()"
+        >
+          {{
+            isLoginMode ? "New user? Sign Up here" : "Existing user? Login here"
+          }}
+        </button>
+      </div>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <mat-card-content>
           <span class="card-content">
@@ -67,17 +94,19 @@
                 {{ isLoginMode ? "Login" : "Sign Up" }}
               </button>
               <button
+                *ngIf="isLoginMode"
                 mat-raised-button
-                type="button"
-                class="botton-overlay"
-                color="primary"
-                (click)="onModeSwitch()"
+                (click)="loginWithGoogle()"
               >
-                {{ isLoginMode ? "New user? Sign Up" : "Existing user? Login" }}
+                <img
+                  src="../../../assets/icons/Google__G__Logo.svg.png"
+                  alt=""
+                />
+                Sign in with Google
               </button>
             </div>
-          </section></mat-card-actions
-        >
+          </section>
+        </mat-card-actions>
       </form>
     </mat-card>
   </div>

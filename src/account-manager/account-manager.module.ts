@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { createCustomElement } from '@angular/elements';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { A11yModule } from '@angular/cdk/a11y';
 import {
   FormsModule,
@@ -19,6 +21,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AuthService } from './shared/auth/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FirebaseSettings } from 'firebase.config';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    AngularFireModule.initializeApp(FirebaseSettings),
+    AngularFireAuthModule,
   ]
 })
 export class AccountManagerModule {

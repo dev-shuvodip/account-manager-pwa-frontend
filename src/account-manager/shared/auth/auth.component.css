@@ -32,3 +32,15 @@ section {
 .mat-card-actions .mat-stroked-button {
   margin: 3px 2px 2px 3px !important;
 }
+
+.mat-card {
+  margin: 10px !important;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-card-header-text {
+  margin: 0;
+}

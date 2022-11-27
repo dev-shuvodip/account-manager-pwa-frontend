@@ -17,7 +17,9 @@ import {
     ReactiveFormsModule,
     Validators
 } from "@angular/forms";
+import { MatIconRegistry } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { MaterialModule } from "src/account-manager/material/material.module";
@@ -39,19 +41,27 @@ export class AuthComponent implements OnInit {
     isLoading: boolean = false;
     error: string | null = null;
     isAuthenticated: boolean = false;
+    logoURL = "";
 
     constructor(
         private formBuilder: FormBuilder,
-        private authService: AuthService,
+        public authService: AuthService,
         private _snackBar: MatSnackBar,
-        private router: Router
+        private router: Router,
+        private matIconRegistry: MatIconRegistry,
+        private domSanitizer: DomSanitizer
     ) {
         this.authService.user.subscribe({
             next: (user => {
                 this.isAuthenticated = !!user;
             })
-        })
+        });
+
+        this.matIconRegistry.addSvgIcon(
+            "logo",
+            this.domSanitizer.bypassSecurityTrustResourceUrl(this.logoURL));
     }
+
 
     ngOnInit(): void {
         if (this.isAuthenticated) {
@@ -114,6 +124,12 @@ export class AuthComponent implements OnInit {
             );
         }
         form.reset();
+    }
+
+    loginWithGoogle() {
+        this.authService.GoogleAuth().then(() => {
+            this.router.navigate([CommonConstants.Landing])
+        });
     }
 
     private _handleError(errorMessage: string) {

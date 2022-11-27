@@ -14,6 +14,9 @@ import { Router } from "@angular/router";
 import CommonConstants from "../../common-constants";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component";
+import { GoogleAuthProvider } from 'firebase/auth';
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import firebase from "firebase/compat";
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +30,8 @@ export class AuthService {
     constructor(
         private httpClient: HttpClient,
         private router: Router,
-        private _snackBar: MatSnackBar
+        private _snackBar: MatSnackBar,
+        public afAuth: AngularFireAuth
     ) { }
 
     signup(email: string, password: string) {
@@ -38,7 +42,7 @@ export class AuthService {
         }
 
         return this.httpClient.post<IAuthResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FirebaseSettings.api_key}`,
+            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
@@ -64,7 +68,7 @@ export class AuthService {
         }
 
         return this.httpClient.post<IAuthResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FirebaseSettings.api_key}`,
+            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
@@ -112,6 +116,7 @@ export class AuthService {
     }
 
     logout() {
+        this.afAuth.signOut();
         this.user.next(null);
         localStorage.removeItem('user_data');
         this.router.navigate([CommonConstants.Authenticate]);
@@ -145,6 +150,45 @@ export class AuthService {
                 }
             );
         }, 300000);
+    }
+
+    GoogleAuth() {
+        return this.AuthLogin(new GoogleAuthProvider());
+    }
+    // Auth logic to run auth providers
+    async AuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
+        try {
+            const result = await this.afAuth
+                .signInWithPopup(provider).then(async (response) => {
+
+                    const user = new User(
+                        response.user.email,
+                        response.user.uid,
+                        await response.user.getIdToken().then(token => token),
+                        response.user.refreshToken,
+                        new Date(new Date().getTime() + 3600 * 1000)
+                    )
+
+                    this.user.next(user);
+                    localStorage.setItem('user_data', JSON.stringify(user));
+                });
+            this._snackBar.openFromComponent(
+                SnackbarComponent,
+                {
+                    data: 'Logged in successfully',
+                    duration: 2000
+                }
+            );
+        } catch (error) {
+            console.log(error);
+            this._snackBar.openFromComponent(
+                SnackbarComponent,
+                {
+                    data: error.message.split(':')[1].split('.')[0],
+                    duration: 2000
+                }
+            );
+        }
     }
 
     private _handleError(_errorResponse: HttpErrorResponse) {
