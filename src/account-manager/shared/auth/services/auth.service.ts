@@ -53,7 +53,8 @@ export class AuthService {
                         resData.localId,
                         resData.idToken,
                         resData.refreshToken,
-                        +resData.expiresIn
+                        +resData.expiresIn,
+                        ""
                     )
                 }
             )
@@ -79,7 +80,8 @@ export class AuthService {
                         resData.localId,
                         resData.idToken,
                         resData.refreshToken,
-                        +resData.expiresIn
+                        +resData.expiresIn,
+                        ""
                     )
                 }
             )
@@ -123,7 +125,7 @@ export class AuthService {
         if (this._tokenExpirationTimer) {
             clearTimeout(this._tokenExpirationTimer);
         }
-        this._tokenExpirationWarningTimer = null;
+        this._tokenExpirationTimer = null;
         if (this._tokenExpirationWarningTimer) {
             clearTimeout(this._tokenExpirationWarningTimer);
         }
@@ -149,7 +151,7 @@ export class AuthService {
                     duration: 2000
                 }
             );
-        }, 300000);
+        }, tokenExpirationDuration - 300000);
     }
 
     GoogleAuth() {
@@ -176,7 +178,7 @@ export class AuthService {
                         );
                         localStorage.setItem('user_data', JSON.stringify(user));
                     });
-            
+
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
@@ -225,7 +227,8 @@ export class AuthService {
         localId: string,
         idToken: string,
         refreshToken: string,
-        expiresIn: number
+        expiresIn: number,
+        _name: string
     ) {
         const tokenExpirationdate = new Date(new Date().getTime() + +expiresIn * 1000);
         const user = new User(
