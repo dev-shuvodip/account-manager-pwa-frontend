@@ -1,5 +1,6 @@
 import {
   Component,
+  HostListener,
   NgZone,
   OnChanges,
   OnDestroy,
@@ -24,9 +25,10 @@ import { QuickLinksSidenavComponent } from './quick-links-sidenav/quick-links-si
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSubscription!: Subscription;
   isAuthenticated: boolean = false;
-  displayName: string = "";
   @ViewChild(QuickLinksSidenavComponent, { static: true }) quickLinksSidenav!: QuickLinksSidenavComponent;
   pageTitle?: string = CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.displayText;
+  viewportInnerWidth: number = window.innerWidth;
+  screenOrientation: string = window.screen.orientation.type;
 
   constructor(
     private router: Router,
@@ -41,10 +43,30 @@ export class HeaderComponent implements OnInit, OnDestroy {
     })
   }
 
+  loadDisplayName() {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _refreshToken: string;
+      _tokenExpirationdate: string;
+      name?: string
+    } = JSON.parse(localStorage.getItem('user_data'));
+
+    if (!userData)
+      return null
+    return userData.name;
+  }
+
   Navigate(e: any) {
     this.zone.run(() => {
       this.router.navigate([e.currentTarget.dataset.link]);
     })
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: UIEvent) {
+    this.viewportInnerWidth = window.innerWidth;
   }
 
   onLogout() {
