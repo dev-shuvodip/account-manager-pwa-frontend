@@ -29,7 +29,7 @@ import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.comp
 import { SnackbarComponent } from "../snackbar/snackbar.component";
 import { IAuthResponse } from "./models/IAuthResponse";
 import { AuthService } from "./services/auth.service";
-import { SignupComponent } from "./signup/signup.component";
+import { SignupComponent } from "./components/signup/signup.component";
 
 @Component({
     selector: 'app-auth',
@@ -134,6 +134,6 @@ export class AuthComponent implements OnInit {
             backdropClass: 'signUpBackdrop',
             hasBackdrop: true
         });
-        window.document.querySelector<any>('.signUpBackdrop').parentNode.style.zIndex = "9999"
+        window.document.querySelector<any>('.signUpBackdrop').parentNode.style.zIndex = "9999";
     }
 }
