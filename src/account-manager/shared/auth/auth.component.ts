@@ -91,6 +91,7 @@ export class AuthComponent implements OnInit {
         this.authService.login(email, password).subscribe(
             {
                 next: (response: IAuthResponse) => {
+                    this.router.navigate([CommonConstants.Landing]);
                     this.isLoading = false;
                     this._snackBar.openFromComponent(
                         SnackbarComponent,
@@ -99,7 +100,6 @@ export class AuthComponent implements OnInit {
                             duration: 2000
                         }
                     );
-                    this.router.navigate([CommonConstants.Landing]);
                 },
                 error: (errorMessage) => {
                     this._handleError(errorMessage)

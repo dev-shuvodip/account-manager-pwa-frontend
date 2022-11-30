@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
     ).subscribe(
       {
         next: (response: IAuthResponse) => {
-          this.isLoading = false;
+          this.router.navigate([CommonConstants.Landing]);
           this._snackBar.openFromComponent(
             SnackbarComponent,
             {
@@ -65,8 +65,8 @@ export class SignupComponent implements OnInit {
               duration: 2000
             }
           );
-          this.router.navigate([CommonConstants.Landing]);
           this.dialog.closeAll();
+          this.isLoading = false;
         },
         error: (errorMessage) => {
           this._handleError(errorMessage)
