@@ -13,12 +13,14 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { SignupComponent } from './auth/signup/signup.component';
 @NgModule({
   declarations: [
     AuthComponent,
     HeaderComponent,
     FooterComponent,
-    QuickLinksSidenavComponent
+    QuickLinksSidenavComponent,
+    SignupComponent
   ],
   exports: [
     AuthComponent,

@@ -17,6 +17,7 @@ import { SnackbarComponent } from "../../snackbar/snackbar.component";
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
+import { IUserUpdateResponse } from "../models/IUserUpdateResponse";
 
 @Injectable({
     providedIn: 'root'
