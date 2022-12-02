@@ -191,15 +191,14 @@ export class AuthService {
             return;
         }
 
-        const loadedUser = new User
-            (
-                userData.email,
-                userData.id,
-                userData._token,
-                userData._refreshToken,
-                new Date(userData._tokenExpirationdate),
-                userData._name
-            );
+        const loadedUser = new User(
+            userData.email,
+            userData.id,
+            userData._token,
+            userData._refreshToken,
+            new Date(userData._tokenExpirationdate),
+            userData._name
+        );
 
         if (loadedUser.token) {
             this.user.next(loadedUser);
