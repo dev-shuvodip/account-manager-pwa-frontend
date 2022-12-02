@@ -57,6 +57,9 @@ export class AuthComponent implements OnInit {
         this.authService.user.subscribe({
             next: (user => {
                 this.isAuthenticated = !!user;
+                if (this.isAuthenticated) {
+                    this.router.navigate([CommonConstants.Landing]);
+                }
             })
         });
 
@@ -66,11 +69,7 @@ export class AuthComponent implements OnInit {
     }
 
 
-    ngOnInit(): void {
-        if (this.isAuthenticated) {
-            this.router.navigate([CommonConstants.Landing]);
-        }
-    }
+    ngOnInit(): void { }
 
     onModeSwitch() {
         this.isLoginMode = !this.isLoginMode;
