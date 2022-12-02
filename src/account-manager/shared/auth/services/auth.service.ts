@@ -4,8 +4,21 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FirebaseSettings } from "firebase.config";
-import { throwError, map, Subject, BehaviorSubject, Observable, forkJoin } from "rxjs";
-import { catchError, exhaustMap, switchMap, take, tap } from "rxjs/operators";
+import {
+    throwError,
+    map,
+    Subject,
+    BehaviorSubject,
+    Observable,
+    forkJoin
+} from "rxjs";
+import {
+    catchError,
+    exhaustMap,
+    switchMap,
+    take,
+    tap
+} from "rxjs/operators";
 import { IAuthResponse } from "../models/IAuthResponse";
 import { IRefreshToken } from "../models/IRefreshToken";
 import { IUser } from "../../models/IUser";
@@ -154,7 +167,8 @@ export class AuthService {
             returnSecureToken: _returnSecureToken
         }
         return this.httpClient.post<IUserUpdateResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FirebaseSettings.apiKey}`, body
+            `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FirebaseSettings.apiKey}`,
+            body
         )
     }
 
@@ -249,7 +263,6 @@ export class AuthService {
     }
 
     /**
-     * 
      * Initiates Authentication using `Google Auth Provider`
      *
      */
