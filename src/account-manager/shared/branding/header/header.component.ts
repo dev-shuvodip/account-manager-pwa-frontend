@@ -10,7 +10,11 @@ import {
 } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subscription
+} from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import CommonConstants from '../../common-constants';
 import { SharedService } from '../../services/shared.service';
