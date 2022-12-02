@@ -9,7 +9,20 @@
     <div mat-dialog-content>
       <form #loginForm="ngForm">
         <span class="card-content">
-          <br />
+          <section>
+            <mat-form-field appearance="outline" class="field-container">
+              <mat-label>Enter Name</mat-label>
+              <input
+                matInput
+                placeholder="John doe"
+                ngModel
+                name="displayName"
+                required
+                minlength="3"
+              />
+              <mat-error></mat-error>
+            </mat-form-field>
+          </section>
           <section>
             <mat-form-field appearance="outline" class="field-container">
               <mat-label>Enter email</mat-label>
@@ -32,6 +45,7 @@
                 [type]="hide ? 'password' : 'text'"
                 ngModel
                 name="password"
+                autocomplete="on"
                 required
                 minlength="6"
               />

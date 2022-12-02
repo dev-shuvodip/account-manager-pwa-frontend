@@ -14,3 +14,11 @@
 .nav-menu-icon {
   margin-right: 10px;
 }
+
+.mat-button {
+  padding: 0px 10px !important;
+}
+
+.mat-menu-item .mat-icon {
+  margin-right: 5px !important;
+}

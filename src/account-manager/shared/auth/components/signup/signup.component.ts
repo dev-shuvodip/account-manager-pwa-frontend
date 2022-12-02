@@ -48,15 +48,14 @@ export class SignupComponent implements OnInit {
     const password = form.value.password;
     const displayName = form.value.displayName;
 
-    let authObservable: Observable<IAuthResponse>;
-
     this.isLoading = true;
     this.authService.signup(
       email,
-      password
+      password,
+      displayName
     ).subscribe(
       {
-        next: (response: IAuthResponse) => {
+        next: () => {
           this.router.navigate([CommonConstants.Landing]);
           this._snackBar.openFromComponent(
             SnackbarComponent,

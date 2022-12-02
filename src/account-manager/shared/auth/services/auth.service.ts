@@ -4,8 +4,8 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FirebaseSettings } from "firebase.config";
-import { throwError, map, Subject, BehaviorSubject } from "rxjs";
-import { catchError, exhaustMap, take, tap } from "rxjs/operators";
+import { throwError, map, Subject, BehaviorSubject, Observable, forkJoin } from "rxjs";
+import { catchError, exhaustMap, switchMap, take, tap } from "rxjs/operators";
 import { IAuthResponse } from "../models/IAuthResponse";
 import { IRefreshToken } from "../models/IRefreshToken";
 import { IUser } from "../../models/IUser";
@@ -35,30 +35,46 @@ export class AuthService {
         public afAuth: AngularFireAuth
     ) { }
 
-    signup(email: string, password: string) {
+    signup(email: string, password: string, displayName: string) {
         const body: IUser = {
             email: email,
             password: password,
             returnSecureToken: true
         }
 
+        var signUpResponseSignature: IAuthResponse = {
+            idToken: "",
+            email: "",
+            refreshToken: "",
+            expiresIn: "",
+            localId: "",
+            displayName: ""
+        }
         return this.httpClient.post<IAuthResponse>(
             `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
-            tap(
-                (resData: IAuthResponse) => {
-                    this._handleAuthentication(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken,
-                        resData.refreshToken,
-                        +resData.expiresIn,
-                        ""
-                    )
-                }
-            )
+            switchMap((signUpResponse) => {
+                signUpResponseSignature = signUpResponse;
+                const updateUserRequest = this.updateUser(
+                    signUpResponse.idToken,
+                    displayName,
+                    [],
+                    false
+                );
+                return forkJoin([updateUserRequest]);
+            }),
+            tap(forkJoinResponse => {
+                this._handleAuthentication(
+                    signUpResponseSignature.email,
+                    signUpResponseSignature.localId,
+                    signUpResponseSignature.idToken,
+                    signUpResponseSignature.refreshToken,
+                    +signUpResponseSignature.expiresIn,
+                    forkJoinResponse[0].displayName
+                )
+            })
         );
     }
 
@@ -82,11 +98,28 @@ export class AuthService {
                         resData.idToken,
                         resData.refreshToken,
                         +resData.expiresIn,
-                        ""
+                        resData.displayName
                     )
                 }
             )
         );
+    }
+
+    updateUser(
+        idToken: string,
+        _name: string,
+        _deleteAttribute?: string[],
+        _returnSecureToken?: boolean
+    ): Observable<IUserUpdateResponse> {
+        const body = {
+            idToken: idToken,
+            displayName: _name,
+            deleteAttribute: _deleteAttribute,
+            returnSecureToken: _returnSecureToken
+        }
+        return this.httpClient.post<IUserUpdateResponse>(
+            `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FirebaseSettings.apiKey}`, body
+        )
     }
 
     autoLogin() {
@@ -96,6 +129,7 @@ export class AuthService {
             _token: string;
             _refreshToken: string;
             _tokenExpirationdate: string;
+            _name: string;
         } = JSON.parse(localStorage.getItem('user_data'));
 
         if (!userData) {
@@ -108,7 +142,8 @@ export class AuthService {
                 userData.id,
                 userData._token,
                 userData._refreshToken,
-                new Date(userData._tokenExpirationdate)
+                new Date(userData._tokenExpirationdate),
+                userData._name
             );
 
         if (loadedUser.token) {
@@ -237,7 +272,8 @@ export class AuthService {
             localId,
             idToken,
             refreshToken,
-            tokenExpirationdate
+            tokenExpirationdate,
+            _name
         );
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);
