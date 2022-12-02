@@ -19,6 +19,7 @@ export default class CommonConstants {
     //#region Messages
     static readonly Author = "Shuvodip Ray"
     static readonly CopyrightMessage = "All Rights Reserved"
+
     //#endregion
 
     //#region Firebase REST Api Endpoints
@@ -26,5 +27,6 @@ export default class CommonConstants {
     static readonly verifyPassword = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
     static readonly setAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:update";
     static readonly refreshToken = "https://securetoken.googleapis.com/v1/token";
+
     //#endregion
 }
