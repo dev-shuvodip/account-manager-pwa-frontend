@@ -49,7 +49,7 @@ export class AuthService {
     ) { }
 
     /**
-     * Creates a new user with provided `email` and `password` and `name`
+     * Creates a new user with provided `email` `password` and `name`
      * by issuing an HTTP POST request to the Auth `signupNewUser` endpoint.
      * and returns an observable of the response.
      *
