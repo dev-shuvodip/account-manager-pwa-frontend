@@ -35,6 +35,18 @@ export class AuthService {
         public afAuth: AngularFireAuth
     ) { }
 
+    /**
+     * Creates a new user with provided `email` and `password` and `name`
+     * by issuing an HTTP POST request to the Auth `signupNewUser` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param email The user email.
+     * @param password The user password.
+     * @param displayName The user's display name
+     *
+     * @return  An `Observable` of the `[IUserUpdateResponse]` for the request, with a response body in the
+     * requested type.
+     */
     signup(email: string, password: string, displayName: string) {
         const body: IUser = {
             email: email,
@@ -78,6 +90,17 @@ export class AuthService {
         );
     }
 
+    /**
+     * Logs in a user with provided `email` and `password`
+     * by issuing an HTTP POST request to the Auth `verifyPassword ` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param email The user email.
+     * @param password The user password.
+     *
+     * @return  An `Observable` of the `IAuthResponse` for the request, with a response body in the
+     * requested type.
+     */
     login(email: string, password: string) {
         const body: IUser = {
             email: email,
@@ -105,6 +128,19 @@ export class AuthService {
         );
     }
 
+    /**
+     * Updates user based on provided parameters
+     * by issuing an HTTP POST request to the Auth `setAccountInfo ` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param idToken The id token issued for the current user.
+     * @param _name The name of the current user.
+     * @param _deleteAttribute List of attributes to delete, `DISPLAY_NAME` or `PHOTO_URL`. This will nullify these values.
+     * @param _returnSecureToken Whether or not to return an ID and refresh token.
+     *
+     * @return  An `Observable` of the `IUserUpdateResponse` for the request, with a response body in the
+     * requested type.
+     */
     updateUser(
         idToken: string,
         _name: string,
@@ -122,6 +158,11 @@ export class AuthService {
         )
     }
 
+    /**
+     * Automatically logs in the current user on load of application
+     * based on the id token expiraion duration
+     *
+     */
     autoLogin() {
         const userData: {
             email: string;
@@ -153,6 +194,10 @@ export class AuthService {
         }
     }
 
+    /**
+     * Logs out the current user
+     *
+     */
     logout() {
         this.afAuth.signOut();
         this.user.next(null);
@@ -168,6 +213,11 @@ export class AuthService {
         this._tokenExpirationWarningTimer = null;
     }
 
+    /**
+     * Automatically logs out the current user on load of application
+     * on expiration of id token
+     *
+     */
     autoLogout(tokenExpirationDuration: number) {
         this._tokenExpirationTimer = setTimeout(() => {
             this.logout();
@@ -190,10 +240,19 @@ export class AuthService {
         }, tokenExpirationDuration - 300000);
     }
 
+    /**
+     * Service to initiate Google Authentication
+     *
+     */
     GoogleAuth() {
         return this.AuthLogin(new GoogleAuthProvider());
     }
-    // Auth logic to run auth providers
+
+    /**
+     * 
+     * Initiates Authentication using `Google Auth Provider`
+     *
+     */
     async AuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
         try {
             const result = await this.afAuth
@@ -233,6 +292,10 @@ export class AuthService {
         }
     }
 
+    /**
+     * Unsuccessful authentication handler
+     *
+     */
     private _handleError(_errorResponse: HttpErrorResponse) {
         let message: string = 'An unknown error has occurred';
         if (!_errorResponse.error || !_errorResponse.error.error) {
@@ -258,6 +321,10 @@ export class AuthService {
         return throwError(() => err);
     }
 
+    /**
+     * Successful authentication handler
+     *
+     */
     private _handleAuthentication(
         email: string,
         localId: string,
