@@ -21,4 +21,10 @@ export default class CommonConstants {
     static readonly CopyrightMessage = "All Rights Reserved"
     //#endregion
 
+    //#region Firebase REST Api Endpoints
+    static readonly signupNewUser = "https://identitytoolkit.googleapis.com/v1/accounts:signUp";
+    static readonly verifyPassword = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+    static readonly setAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:update";
+    static readonly refreshToken = "https://securetoken.googleapis.com/v1/token";
+    //#endregion
 }

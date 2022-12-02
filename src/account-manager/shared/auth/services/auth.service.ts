@@ -76,7 +76,7 @@ export class AuthService {
             displayName: ""
         }
         return this.httpClient.post<IAuthResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FirebaseSettings.apiKey}`,
+            `${CommonConstants.signupNewUser}?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
@@ -122,7 +122,7 @@ export class AuthService {
         }
 
         return this.httpClient.post<IAuthResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FirebaseSettings.apiKey}`,
+            `${CommonConstants.verifyPassword}?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
@@ -167,7 +167,7 @@ export class AuthService {
             returnSecureToken: _returnSecureToken
         }
         return this.httpClient.post<IUserUpdateResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${FirebaseSettings.apiKey}`,
+            `${CommonConstants.setAccountInfo}?key=${FirebaseSettings.apiKey}`,
             body
         )
     }
@@ -206,6 +206,25 @@ export class AuthService {
             const expirationDuration = new Date(userData._tokenExpirationdate).getTime() - new Date().getTime();
             this.autoLogout(expirationDuration);
         }
+    }
+
+    /**
+     * Refresh a `Firebase ID token` by issuing an HTTP POST request to the `securetoken.googleapis.com` endpoint.
+     *
+     * @param _refreshToken The refresh token.
+     *
+     * @return  An `Observable` of the `IRefreshToken` for the request, with a response body in the
+     * requested type.
+     */
+    refreshToken(_refreshToken: string) {
+        const body = {
+            grant_type: "refresh_token",
+            refresh_token: _refreshToken
+        };
+        return this.httpClient.post<IRefreshToken>(
+            `${CommonConstants.refreshToken}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
     }
 
     /**
