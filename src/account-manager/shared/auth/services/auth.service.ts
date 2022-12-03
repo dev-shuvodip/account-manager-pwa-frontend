@@ -332,7 +332,7 @@ export class AuthService {
      * requested type.
      */
     passwordReset(email: string) {
-        return this.httpClient.post(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${FirebaseSettings.apiKey}`,
+        return this.httpClient.post(`${CommonConstants.getOobConfirmationCode}?key=${FirebaseSettings.apiKey}`,
             {
                 requestType: "PASSWORD_RESET",
                 email: email
