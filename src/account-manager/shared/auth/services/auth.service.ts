@@ -366,6 +366,12 @@ export class AuthService {
             case 'INVALID_PASSWORD':
                 message = "Entered email address or password is invalid.";
                 break;
+            case 'INVALID_EMAIL':
+                message = "The email address is badly formatted.";
+                break;
+            case 'EMAIL_NOT_FOUND':
+                message = "There is no user record corresponding to this identifier. The user may have been deleted.";
+                break;
         }
 
         const err = new Error(message);
