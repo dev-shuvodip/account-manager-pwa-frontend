@@ -324,6 +324,24 @@ export class AuthService {
     }
 
     /**
+     * Sends a password reset email by issuing an `HTTP POST` request to the Auth `getOobConfirmationCode` endpoint.
+     *
+     * @param email The user email.
+     *
+     * @return  An `Observable` for the request, with a response body in the
+     * requested type.
+     */
+    passwordReset(email: string) {
+        return this.httpClient.post(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${FirebaseSettings.apiKey}`,
+            {
+                requestType: "PASSWORD_RESET",
+                email: email
+            }).pipe(
+                catchError(this._handleError)
+            )
+    }
+
+    /**
      * Unsuccessful authentication handler
      *
      */

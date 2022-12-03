@@ -69,3 +69,7 @@ section {
 .spacer-span {
   margin-right: 10px;
 }
+
+.forgotPwdBtn {
+  float: right;
+}

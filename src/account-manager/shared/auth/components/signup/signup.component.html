@@ -7,7 +7,7 @@
       <span class="header-overlay">Sign Up</span>
     </div>
     <div mat-dialog-content>
-      <form #loginForm="ngForm">
+      <form #signUpForm="ngForm">
         <span class="card-content">
           <section>
             <mat-form-field appearance="outline" class="field-container">
@@ -73,8 +73,8 @@
             mat-raised-button
             type="submit"
             color="primary"
-            [disabled]="!loginForm.valid"
-            (click)="onSubmit(loginForm)"
+            [disabled]="!signUpForm.valid"
+            (click)="onSubmit(signUpForm)"
           >
             <mat-icon class="icon-overlay">person_add_alt</mat-icon>
 

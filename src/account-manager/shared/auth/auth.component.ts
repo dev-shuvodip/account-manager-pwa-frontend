@@ -7,7 +7,7 @@ import {
     HttpClient,
     HttpClientModule
 } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -30,6 +30,7 @@ import { SnackbarComponent } from "../snackbar/snackbar.component";
 import { IAuthResponse } from "./models/IAuthResponse";
 import { AuthService } from "./services/auth.service";
 import { SignupComponent } from "./components/signup/signup.component";
+import { PasswordResetComponent } from "./components/password-reset/password-reset.component";
 
 @Component({
     selector: 'app-auth',
@@ -83,9 +84,6 @@ export class AuthComponent implements OnInit {
 
         const email = form.value.email;
         const password = form.value.password;
-
-        let authObservable: Observable<IAuthResponse>;
-
         this.isLoading = true;
         this.authService.login(email, password).subscribe(
             {
@@ -134,5 +132,13 @@ export class AuthComponent implements OnInit {
             hasBackdrop: true
         });
         window.document.querySelector<any>('.signUpBackdrop').parentNode.style.zIndex = "9999";
+    }
+
+    openPasswordResetDialog() {
+        this.dialog.open(PasswordResetComponent, {
+            backdropClass: 'passwordResetBackdrop',
+            hasBackdrop: true
+        });
+        window.document.querySelector<any>('.passwordResetBackdrop').parentNode.style.zIndex = "9999";
     }
 }
