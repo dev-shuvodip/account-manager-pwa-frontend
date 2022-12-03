@@ -332,13 +332,15 @@ export class AuthService {
      * requested type.
      */
     passwordReset(email: string) {
-        return this.httpClient.post(`${CommonConstants.getOobConfirmationCode}?key=${FirebaseSettings.apiKey}`,
+        return this.httpClient.post(
+            `${CommonConstants.getOobConfirmationCode}?key=${FirebaseSettings.apiKey}`,
             {
                 requestType: "PASSWORD_RESET",
                 email: email
-            }).pipe(
-                catchError(this._handleError)
-            )
+            }
+        ).pipe(
+            catchError(this._handleError)
+        )
     }
 
     /**
