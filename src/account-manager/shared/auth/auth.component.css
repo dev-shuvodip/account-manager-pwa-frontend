@@ -72,4 +72,6 @@ section {
 
 .forgotPwdBtn {
   float: right;
+  padding: 0px;
+  line-height: 0px;
 }
