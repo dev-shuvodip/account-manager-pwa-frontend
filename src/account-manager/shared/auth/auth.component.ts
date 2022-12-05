@@ -45,6 +45,7 @@ export class AuthComponent implements OnInit {
     error: string | null = null;
     isAuthenticated: boolean = false;
     logoURL = "";
+    @ViewChild('loginForm', { static: false }) loginForm: NgForm;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -138,6 +139,7 @@ export class AuthComponent implements OnInit {
     }
 
     openSignUpDialog() {
+        this.loginForm.reset();
         this.dialog.open(SignupComponent, {
             backdropClass: 'signUpBackdrop',
             hasBackdrop: true
@@ -146,6 +148,7 @@ export class AuthComponent implements OnInit {
     }
 
     openPasswordResetDialog() {
+        this.loginForm.reset();
         this.dialog.open(PasswordResetComponent, {
             backdropClass: 'passwordResetBackdrop',
             hasBackdrop: true
