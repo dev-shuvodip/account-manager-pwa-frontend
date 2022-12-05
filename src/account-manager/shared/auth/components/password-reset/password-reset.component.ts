@@ -50,7 +50,7 @@ export class PasswordResetComponent implements OnInit {
           SnackbarComponent,
           {
             data: 'Initialized password reset. Please check your mail',
-            duration: 2000
+            duration: 3000
           }
         );
         this.dialog.closeAll();

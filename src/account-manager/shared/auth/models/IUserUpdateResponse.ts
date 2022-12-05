@@ -7,6 +7,7 @@ export interface IUserUpdateResponse {
     idToken: string;
     refreshToken: string;
     expiresIn: string;
+    emailVerified: boolean;
 }
 
 export interface IProviderUserInfo {

@@ -28,6 +28,7 @@ export default class CommonConstants {
     static readonly setAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:update";
     static readonly refreshToken = "https://securetoken.googleapis.com/v1/token";
     static readonly getOobConfirmationCode = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode";
+    static readonly getAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:lookup";
 
     //#endregion
 }

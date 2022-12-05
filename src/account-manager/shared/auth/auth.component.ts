@@ -87,16 +87,27 @@ export class AuthComponent implements OnInit {
         this.isLoading = true;
         this.authService.login(email, password).subscribe(
             {
-                next: (response: IAuthResponse) => {
-                    this.router.navigate([CommonConstants.Landing]);
-                    this.isLoading = false;
-                    this._snackBar.openFromComponent(
-                        SnackbarComponent,
-                        {
-                            data: 'Logged in successfully',
-                            duration: 2000
-                        }
-                    );
+                next: (response) => {
+                    if (response[0].users[0].emailVerified) {
+                        this.router.navigate([CommonConstants.Landing]);
+                        this.isLoading = false;
+                        this._snackBar.openFromComponent(
+                            SnackbarComponent,
+                            {
+                                data: 'Logged in successfully',
+                                duration: 2000
+                            }
+                        );
+                    } else {
+                        this.isLoading = false;
+                        this._snackBar.openFromComponent(
+                            SnackbarComponent,
+                            {
+                                data: 'Please verify your email. Check Spam/Junk folder and mark sender as not spam',
+                                duration: 5000
+                            }
+                        );
+                    }
                 },
                 error: (errorMessage) => {
                     this._handleError(errorMessage)

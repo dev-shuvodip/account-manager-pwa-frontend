@@ -31,6 +31,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { IUserUpdateResponse } from "../models/IUserUpdateResponse";
+import { IGetUserResponse } from "../models/IGetUserResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -88,19 +89,44 @@ export class AuthService {
                     [],
                     false
                 );
-                return forkJoin([updateUserRequest]);
+                const verifyEmailResponse = this.verifyEmail(signUpResponse.idToken);
+                return forkJoin([updateUserRequest, verifyEmailResponse]);
             }),
             tap(forkJoinResponse => {
-                this._handleAuthentication(
-                    signUpResponseSignature.email,
-                    signUpResponseSignature.localId,
-                    signUpResponseSignature.idToken,
-                    signUpResponseSignature.refreshToken,
-                    +signUpResponseSignature.expiresIn,
-                    forkJoinResponse[0].displayName
-                )
+                if (forkJoinResponse[0].emailVerified) {
+                    this._handleAuthentication(
+                        signUpResponseSignature.email,
+                        signUpResponseSignature.localId,
+                        signUpResponseSignature.idToken,
+                        signUpResponseSignature.refreshToken,
+                        +signUpResponseSignature.expiresIn,
+                        forkJoinResponse[0].displayName
+                    )
+                } else {
+                    this.logout();
+                }
             })
         );
+    }
+
+    /**
+     * Sends an email verification for the current user by issuing an HTTP POST request 
+     * to the Auth `getOobConfirmationCode` endpoint.
+     * 
+     * @param idToken The idToken issued for the user.
+     *
+     * @return  An `Observable` for the request, with a response body in the
+     * requested type.
+     */
+    verifyEmail(idToken: string) {
+        const body = {
+            requestType: "VERIFY_EMAIL",
+            idToken: idToken
+        }
+        return this.httpClient.post(
+            `${CommonConstants.getOobConfirmationCode}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
     }
 
     /**
@@ -120,25 +146,58 @@ export class AuthService {
             password: password,
             returnSecureToken: true
         }
-
+        var loginResponseSignature: IAuthResponse = {
+            idToken: "",
+            email: "",
+            refreshToken: "",
+            expiresIn: "",
+            localId: "",
+            displayName: ""
+        }
         return this.httpClient.post<IAuthResponse>(
             `${CommonConstants.verifyPassword}?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
-            tap(
-                (resData: IAuthResponse) => {
+            switchMap((loginResponse) => {
+                loginResponseSignature = loginResponse;
+                const getUserResponse = this.getUser(loginResponse.idToken)
+                return forkJoin([getUserResponse]);
+            }),
+            tap(forkJoinResponse => {
+                if (forkJoinResponse[0].users[0].emailVerified) {
                     this._handleAuthentication(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken,
-                        resData.refreshToken,
-                        +resData.expiresIn,
-                        resData.displayName
+                        loginResponseSignature.email,
+                        loginResponseSignature.localId,
+                        loginResponseSignature.idToken,
+                        loginResponseSignature.refreshToken,
+                        +loginResponseSignature.expiresIn,
+                        forkJoinResponse[0].users[0].displayName
                     )
+                } else {
+                    this.logout();
                 }
-            )
+            })
         );
+    }
+
+    /**
+     * Gets a user's data by issuing an HTTP POST request to the Auth `getAccountInfo` endpoint.
+     * 
+     * @param idToken The idToken issued for the user.
+     *
+     * @return  An `Observable` of the `IGetUserResponse` for the request, with a response body in the
+     * requested type.
+     */
+    getUser(idToken: string) {
+        const body = {
+            idToken: idToken
+        }
+
+        return this.httpClient.post<IGetUserResponse>(
+            `${CommonConstants.getAccountInfo}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
     }
 
     /**

@@ -54,17 +54,29 @@ export class SignupComponent implements OnInit {
       displayName
     ).subscribe(
       {
-        next: () => {
-          this.router.navigate([CommonConstants.Landing]);
-          this._snackBar.openFromComponent(
-            SnackbarComponent,
-            {
-              data: 'Signed up successfully',
-              duration: 2000
-            }
-          );
-          this.dialog.closeAll();
-          this.isLoading = false;
+        next: (response) => {
+          if (response[0].emailVerified) {
+            this.router.navigate([CommonConstants.Landing]);
+            this._snackBar.openFromComponent(
+              SnackbarComponent,
+              {
+                data: 'Signed up successfully',
+                duration: 2000
+              }
+            );
+            this.dialog.closeAll();
+            this.isLoading = false;
+          } else {
+            this._snackBar.openFromComponent(
+              SnackbarComponent,
+              {
+                data: 'A verification mail has been sent to your mailbox. Please respond to it to verify your email',
+                duration: 5000
+              }
+            );
+            this.dialog.closeAll();
+            this.isLoading = false;
+          }
         },
         error: (errorMessage) => {
           this._handleError(errorMessage)
