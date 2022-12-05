@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1670271165422,
+  "timestamp": 1670271236861,
   "index": "/account-manager-pwa-frontend/index.html",
   "assetGroups": [
     {
@@ -34,10 +34,6 @@
         "ignoreVary": true
       },
       "urls": [
-        "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo.png",
-        "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo.svg",
-        "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo_24x24.png",
-        "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo_48x48.png",
         "/account-manager-pwa-frontend/assets/icons/Google__G__Logo.png",
         "/account-manager-pwa-frontend/assets/icons/Google__G__Logo_2.png",
         "/account-manager-pwa-frontend/assets/icons/icon-128x128.png",
@@ -59,10 +55,6 @@
     "/account-manager-pwa-frontend/786.95cf59253c995a2d.js": "1d947a81864a22b120ff538a92577a444717dfc8",
     "/account-manager-pwa-frontend/881.b7c6f339678c7ee0.js": "cf825eecfe7dcb8c839b998fbb2f94771a3ea0bd",
     "/account-manager-pwa-frontend/889.525945d123fa2a12.js": "461feac1343f03dab5fce29949d480e358a64f25",
-    "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo.png": "3fb18c84123ff3429fd20e8d3bc242050e4c891a",
-    "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo.svg": "6a6396ac2d75ed26e2a0e85c71938156f9bde39b",
-    "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo_24x24.png": "fd8faf31bfde8684c893b441dfdd28eeac4ade32",
-    "/account-manager-pwa-frontend/assets/icons/Facebook_f_logo_48x48.png": "276f14d07ee340685b0a6041393e9222c83ccc62",
     "/account-manager-pwa-frontend/assets/icons/Google__G__Logo.png": "2542ad820a2884ecbc55599de5ea2b1e8eb4c565",
     "/account-manager-pwa-frontend/assets/icons/Google__G__Logo_2.png": "c8f84af06d653e5e699a6c2d5c0c4068902d15ff",
     "/account-manager-pwa-frontend/assets/icons/icon-128x128.png": "cc51d48c08a2a2a18e44e0ca384091a135b1edcb",
