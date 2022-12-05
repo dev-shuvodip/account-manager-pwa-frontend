@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,30 +14,19 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   hide: boolean = true;
   isLoading: boolean = false;
   error: string | null = null;
-  isAuthenticated: boolean = false;
 
   constructor(
     public authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router,
     public dialog: MatDialog
-  ) {
-    this.authService.user.subscribe({
-      next: (user => {
-        this.isAuthenticated = !!user;
-      })
-    });
-  }
+  ) { }
 
-  ngOnInit(): void {
-    if (this.isAuthenticated) {
-      this.router.navigate([CommonConstants.Landing]);
-    }
-  }
+  ngOnInit(): void { }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
@@ -97,4 +86,6 @@ export class SignupComponent implements OnInit {
       }
     );
   }
+
+  ngOnDestroy(): void { }
 }

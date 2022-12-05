@@ -44,17 +44,13 @@ export class AuthComponent implements OnInit {
     isLoading: boolean = false;
     error: string | null = null;
     isAuthenticated: boolean = false;
-    logoURL = "";
     @ViewChild('loginForm', { static: false }) loginForm: NgForm;
 
     constructor(
-        private formBuilder: FormBuilder,
         public authService: AuthService,
         private _snackBar: MatSnackBar,
         private router: Router,
-        public dialog: MatDialog,
-        private matIconRegistry: MatIconRegistry,
-        private domSanitizer: DomSanitizer
+        public dialog: MatDialog
     ) {
         this.authService.user.subscribe({
             next: (user => {
@@ -64,12 +60,7 @@ export class AuthComponent implements OnInit {
                 }
             })
         });
-
-        this.matIconRegistry.addSvgIcon(
-            "logo",
-            this.domSanitizer.bypassSecurityTrustResourceUrl(this.logoURL));
     }
-
 
     ngOnInit(): void { }
 
