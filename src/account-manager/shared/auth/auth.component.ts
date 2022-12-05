@@ -7,7 +7,7 @@ import {
     HttpClient,
     HttpClientModule
 } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -17,6 +17,7 @@ import {
     ReactiveFormsModule,
     Validators
 } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { MatIconRegistry } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DomSanitizer } from "@angular/platform-browser";
@@ -28,6 +29,8 @@ import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.comp
 import { SnackbarComponent } from "../snackbar/snackbar.component";
 import { IAuthResponse } from "./models/IAuthResponse";
 import { AuthService } from "./services/auth.service";
+import { SignupComponent } from "./components/signup/signup.component";
+import { PasswordResetComponent } from "./components/password-reset/password-reset.component";
 
 @Component({
     selector: 'app-auth',
@@ -48,12 +51,16 @@ export class AuthComponent implements OnInit {
         public authService: AuthService,
         private _snackBar: MatSnackBar,
         private router: Router,
+        public dialog: MatDialog,
         private matIconRegistry: MatIconRegistry,
         private domSanitizer: DomSanitizer
     ) {
         this.authService.user.subscribe({
             next: (user => {
                 this.isAuthenticated = !!user;
+                if (this.isAuthenticated) {
+                    this.router.navigate([CommonConstants.Landing]);
+                }
             })
         });
 
@@ -63,14 +70,11 @@ export class AuthComponent implements OnInit {
     }
 
 
-    ngOnInit(): void {
-        if (this.isAuthenticated) {
-            this.router.navigate([CommonConstants.Landing]);
-        }
-    }
+    ngOnInit(): void { }
 
     onModeSwitch() {
         this.isLoginMode = !this.isLoginMode;
+        this.openSignUpDialog();
     }
 
     onSubmit(form: NgForm) {
@@ -80,14 +84,12 @@ export class AuthComponent implements OnInit {
 
         const email = form.value.email;
         const password = form.value.password;
-
-        let authObservable: Observable<IAuthResponse>;
-
         this.isLoading = true;
-        if (this.isLoginMode) {
-            this.authService.login(email, password).subscribe(
-                {
-                    next: (response: IAuthResponse) => {
+        this.authService.login(email, password).subscribe(
+            {
+                next: (response) => {
+                    if (response[0].users[0].emailVerified) {
+                        this.router.navigate([CommonConstants.Landing]);
                         this.isLoading = false;
                         this._snackBar.openFromComponent(
                             SnackbarComponent,
@@ -96,33 +98,22 @@ export class AuthComponent implements OnInit {
                                 duration: 2000
                             }
                         );
-                        this.router.navigate([CommonConstants.Landing]);
-                    },
-                    error: (errorMessage) => {
-                        this._handleError(errorMessage)
-                    }
-                }
-            );
-        } else {
-            this.authService.signup(email, password).subscribe(
-                {
-                    next: (response: IAuthResponse) => {
+                    } else {
                         this.isLoading = false;
                         this._snackBar.openFromComponent(
                             SnackbarComponent,
                             {
-                                data: 'Signed up successfully',
-                                duration: 2000
+                                data: 'Please verify your email. Check Spam/Junk folder and mark sender as not spam',
+                                duration: 5000
                             }
                         );
-                        this.router.navigate([CommonConstants.Landing]);
-                    },
-                    error: (errorMessage) => {
-                        this._handleError(errorMessage)
                     }
+                },
+                error: (errorMessage) => {
+                    this._handleError(errorMessage)
                 }
-            );
-        }
+            }
+        );
         form.reset();
     }
 
@@ -144,5 +135,21 @@ export class AuthComponent implements OnInit {
                 duration: 2000
             }
         );
+    }
+
+    openSignUpDialog() {
+        this.dialog.open(SignupComponent, {
+            backdropClass: 'signUpBackdrop',
+            hasBackdrop: true
+        });
+        window.document.querySelector<any>('.signUpBackdrop').parentNode.style.zIndex = "9999";
+    }
+
+    openPasswordResetDialog() {
+        this.dialog.open(PasswordResetComponent, {
+            backdropClass: 'passwordResetBackdrop',
+            hasBackdrop: true
+        });
+        window.document.querySelector<any>('.passwordResetBackdrop').parentNode.style.zIndex = "9999";
     }
 }

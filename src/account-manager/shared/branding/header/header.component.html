@@ -25,9 +25,31 @@
   >
   <span class="header-spacer"></span>
   <ng-container *ngIf="isAuthenticated">
-    <button mat-button class="button-overlay" (click)="onLogout()">
-      <mat-icon class="icon-overlay">logout</mat-icon>Logout
+    <div *ngIf="viewportInnerWidth >= 480">
+      <button *ngIf="loadDisplayName()" mat-button>
+        <span> Hi, {{ loadDisplayName() }} </span>
+      </button>
+      <button mat-button (click)="onLogout()">
+        <mat-icon class="icon-overlay">logout</mat-icon>
+        <span> Logout </span>
+      </button>
+    </div>
+    <button
+      *ngIf="viewportInnerWidth < 480"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>more_vert</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button *ngIf="loadDisplayName()" mat-menu-item>
+        <span> Hi, {{ loadDisplayName() }} </span>
+      </button>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon class="icon-overlay">logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </ng-container>
 </mat-toolbar>
 <app-quick-links-sidenav></app-quick-links-sidenav>

@@ -1,0 +1,91 @@
+<div class="dialog-container">
+  <ng-container *ngIf="isLoading">
+    <loading-spinner></loading-spinner>
+  </ng-container>
+  <div *ngIf="!isLoading">
+    <div mat-dialog-title>
+      <span class="header-overlay">Sign Up</span>
+    </div>
+    <div mat-dialog-content>
+      <form #signUpForm="ngForm">
+        <span class="card-content">
+          <section>
+            <mat-form-field appearance="outline" class="field-container">
+              <mat-label>Enter Name</mat-label>
+              <input
+                matInput
+                placeholder="John doe"
+                ngModel
+                name="displayName"
+                required
+                minlength="3"
+              />
+              <mat-error></mat-error>
+            </mat-form-field>
+          </section>
+          <section>
+            <mat-form-field appearance="outline" class="field-container">
+              <mat-label>Enter email</mat-label>
+              <input
+                matInput
+                placeholder="pat@example.com"
+                ngModel
+                name="email"
+                required
+                email
+              />
+              <mat-error></mat-error>
+            </mat-form-field>
+          </section>
+          <section>
+            <mat-form-field appearance="outline" class="field-container">
+              <mat-label>Enter password</mat-label>
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                ngModel
+                name="password"
+                autocomplete="on"
+                required
+                minlength="6"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <mat-error></mat-error>
+            </mat-form-field>
+          </section>
+        </span>
+      </form>
+    </div>
+    <div mat-dialog-actions class="">
+      <section>
+        <div class="form-button-row">
+          <button
+            mat-raised-button
+            type="submit"
+            color="primary"
+            [disabled]="!signUpForm.valid"
+            (click)="onSubmit(signUpForm)"
+          >
+            <mat-icon class="icon-overlay">person_add_alt</mat-icon>
+
+            <span>Sign Up</span>
+          </button>
+          <span class="spacer-span"></span>
+          <button mat-raised-button mat-dialog-close type="button">
+            <span>Cancel</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

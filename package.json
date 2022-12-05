@@ -1,7 +1,7 @@
 {
   "name": "account-manager-pwa-frontend",
-  "description": "Transaction management app in Angular and Firebase backend",
-  "version": "0.6.0",
+  "description": "Transaction management app in Angular with Firebase backend",
+  "version": "0.7.2",
   "author": {
     "name": "Shuvodip Ray",
     "email": "shuvo.ray@gmail.com"

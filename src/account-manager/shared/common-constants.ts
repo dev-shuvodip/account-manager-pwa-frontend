@@ -19,6 +19,16 @@ export default class CommonConstants {
     //#region Messages
     static readonly Author = "Shuvodip Ray"
     static readonly CopyrightMessage = "All Rights Reserved"
+
     //#endregion
 
+    //#region Firebase REST Api Endpoints
+    static readonly signupNewUser = "https://identitytoolkit.googleapis.com/v1/accounts:signUp";
+    static readonly verifyPassword = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+    static readonly setAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:update";
+    static readonly refreshToken = "https://securetoken.googleapis.com/v1/token";
+    static readonly getOobConfirmationCode = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode";
+    static readonly getAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:lookup";
+
+    //#endregion
 }

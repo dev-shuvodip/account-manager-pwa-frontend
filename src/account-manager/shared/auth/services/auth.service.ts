@@ -4,8 +4,21 @@ import {
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { FirebaseSettings } from "firebase.config";
-import { throwError, map, Subject, BehaviorSubject } from "rxjs";
-import { catchError, exhaustMap, take, tap } from "rxjs/operators";
+import {
+    throwError,
+    map,
+    Subject,
+    BehaviorSubject,
+    Observable,
+    forkJoin
+} from "rxjs";
+import {
+    catchError,
+    exhaustMap,
+    switchMap,
+    take,
+    tap
+} from "rxjs/operators";
 import { IAuthResponse } from "../models/IAuthResponse";
 import { IRefreshToken } from "../models/IRefreshToken";
 import { IUser } from "../../models/IUser";
@@ -17,6 +30,8 @@ import { SnackbarComponent } from "../../snackbar/snackbar.component";
 import { GoogleAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
+import { IUserUpdateResponse } from "../models/IUserUpdateResponse";
+import { IGetUserResponse } from "../models/IGetUserResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -34,58 +49,193 @@ export class AuthService {
         public afAuth: AngularFireAuth
     ) { }
 
-    signup(email: string, password: string) {
+    /**
+     * Creates a new user with provided `email` `password` and `name`
+     * by issuing an HTTP POST request to the Auth `signupNewUser` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param email The user email.
+     * @param password The user password.
+     * @param displayName The user's display name
+     *
+     * @return  An `Observable` of the `[IUserUpdateResponse]` for the request, with a response body in the
+     * requested type.
+     */
+    signup(email: string, password: string, displayName: string) {
         const body: IUser = {
             email: email,
             password: password,
             returnSecureToken: true
         }
 
+        var signUpResponseSignature: IAuthResponse = {
+            idToken: "",
+            email: "",
+            refreshToken: "",
+            expiresIn: "",
+            localId: "",
+            displayName: ""
+        }
         return this.httpClient.post<IAuthResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FirebaseSettings.apiKey}`,
+            `${CommonConstants.signupNewUser}?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
-            tap(
-                (resData: IAuthResponse) => {
+            switchMap((signUpResponse) => {
+                signUpResponseSignature = signUpResponse;
+                const updateUserRequest = this.updateUser(
+                    signUpResponse.idToken,
+                    displayName,
+                    [],
+                    false
+                );
+                const verifyEmailResponse = this.verifyEmail(signUpResponse.idToken);
+                return forkJoin([updateUserRequest, verifyEmailResponse]);
+            }),
+            tap(forkJoinResponse => {
+                if (forkJoinResponse[0].emailVerified) {
                     this._handleAuthentication(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken,
-                        resData.refreshToken,
-                        +resData.expiresIn
+                        signUpResponseSignature.email,
+                        signUpResponseSignature.localId,
+                        signUpResponseSignature.idToken,
+                        signUpResponseSignature.refreshToken,
+                        +signUpResponseSignature.expiresIn,
+                        forkJoinResponse[0].displayName
                     )
+                } else {
+                    this.logout();
                 }
-            )
+            })
         );
     }
 
+    /**
+     * Sends an email verification for the current user by issuing an HTTP POST request 
+     * to the Auth `getOobConfirmationCode` endpoint.
+     * 
+     * @param idToken The idToken issued for the user.
+     *
+     * @return  An `Observable` for the request, with a response body in the
+     * requested type.
+     */
+    verifyEmail(idToken: string) {
+        const body = {
+            requestType: "VERIFY_EMAIL",
+            idToken: idToken
+        }
+        return this.httpClient.post(
+            `${CommonConstants.getOobConfirmationCode}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
+    }
+
+    /**
+     * Logs in a user with provided `email` and `password`
+     * by issuing an HTTP POST request to the Auth `verifyPassword ` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param email The user email.
+     * @param password The user password.
+     *
+     * @return  An `Observable` of the `IAuthResponse` for the request, with a response body in the
+     * requested type.
+     */
     login(email: string, password: string) {
         const body: IUser = {
             email: email,
             password: password,
             returnSecureToken: true
         }
-
+        var loginResponseSignature: IAuthResponse = {
+            idToken: "",
+            email: "",
+            refreshToken: "",
+            expiresIn: "",
+            localId: "",
+            displayName: ""
+        }
         return this.httpClient.post<IAuthResponse>(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FirebaseSettings.apiKey}`,
+            `${CommonConstants.verifyPassword}?key=${FirebaseSettings.apiKey}`,
             body
         ).pipe(
             catchError(this._handleError),
-            tap(
-                (resData: IAuthResponse) => {
+            switchMap((loginResponse) => {
+                loginResponseSignature = loginResponse;
+                const getUserResponse = this.getUser(loginResponse.idToken)
+                return forkJoin([getUserResponse]);
+            }),
+            tap(forkJoinResponse => {
+                if (forkJoinResponse[0].users[0].emailVerified) {
                     this._handleAuthentication(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken,
-                        resData.refreshToken,
-                        +resData.expiresIn
+                        loginResponseSignature.email,
+                        loginResponseSignature.localId,
+                        loginResponseSignature.idToken,
+                        loginResponseSignature.refreshToken,
+                        +loginResponseSignature.expiresIn,
+                        forkJoinResponse[0].users[0].displayName
                     )
+                } else {
+                    this.logout();
                 }
-            )
+            })
         );
     }
 
+    /**
+     * Gets a user's data by issuing an HTTP POST request to the Auth `getAccountInfo` endpoint.
+     * 
+     * @param idToken The idToken issued for the user.
+     *
+     * @return  An `Observable` of the `IGetUserResponse` for the request, with a response body in the
+     * requested type.
+     */
+    getUser(idToken: string) {
+        const body = {
+            idToken: idToken
+        }
+
+        return this.httpClient.post<IGetUserResponse>(
+            `${CommonConstants.getAccountInfo}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
+    }
+
+    /**
+     * Updates user based on provided parameters
+     * by issuing an HTTP POST request to the Auth `setAccountInfo ` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param idToken The id token issued for the current user.
+     * @param _name The name of the current user.
+     * @param _deleteAttribute List of attributes to delete, `DISPLAY_NAME` or `PHOTO_URL`. This will nullify these values.
+     * @param _returnSecureToken Whether or not to return an ID and refresh token.
+     *
+     * @return  An `Observable` of the `IUserUpdateResponse` for the request, with a response body in the
+     * requested type.
+     */
+    updateUser(
+        idToken: string,
+        _name: string,
+        _deleteAttribute?: string[],
+        _returnSecureToken?: boolean
+    ): Observable<IUserUpdateResponse> {
+        const body = {
+            idToken: idToken,
+            displayName: _name,
+            deleteAttribute: _deleteAttribute,
+            returnSecureToken: _returnSecureToken
+        }
+        return this.httpClient.post<IUserUpdateResponse>(
+            `${CommonConstants.setAccountInfo}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
+    }
+
+    /**
+     * Automatically logs in the current user on load of application
+     * based on the id token expiraion duration
+     *
+     */
     autoLogin() {
         const userData: {
             email: string;
@@ -93,20 +243,21 @@ export class AuthService {
             _token: string;
             _refreshToken: string;
             _tokenExpirationdate: string;
+            _name: string;
         } = JSON.parse(localStorage.getItem('user_data'));
 
         if (!userData) {
             return;
         }
 
-        const loadedUser = new User
-            (
-                userData.email,
-                userData.id,
-                userData._token,
-                userData._refreshToken,
-                new Date(userData._tokenExpirationdate)
-            );
+        const loadedUser = new User(
+            userData.email,
+            userData.id,
+            userData._token,
+            userData._refreshToken,
+            new Date(userData._tokenExpirationdate),
+            userData._name
+        );
 
         if (loadedUser.token) {
             this.user.next(loadedUser);
@@ -115,6 +266,29 @@ export class AuthService {
         }
     }
 
+    /**
+     * Refresh a `Firebase ID token` by issuing an HTTP POST request to the `securetoken.googleapis.com` endpoint.
+     *
+     * @param _refreshToken The refresh token.
+     *
+     * @return  An `Observable` of the `IRefreshToken` for the request, with a response body in the
+     * requested type.
+     */
+    refreshToken(_refreshToken: string) {
+        const body = {
+            grant_type: "refresh_token",
+            refresh_token: _refreshToken
+        };
+        return this.httpClient.post<IRefreshToken>(
+            `${CommonConstants.refreshToken}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
+    }
+
+    /**
+     * Logs out the current user
+     *
+     */
     logout() {
         this.afAuth.signOut();
         this.user.next(null);
@@ -123,13 +297,18 @@ export class AuthService {
         if (this._tokenExpirationTimer) {
             clearTimeout(this._tokenExpirationTimer);
         }
-        this._tokenExpirationWarningTimer = null;
+        this._tokenExpirationTimer = null;
         if (this._tokenExpirationWarningTimer) {
             clearTimeout(this._tokenExpirationWarningTimer);
         }
         this._tokenExpirationWarningTimer = null;
     }
 
+    /**
+     * Automatically logs out the current user on load of application
+     * on expiration of id token
+     *
+     */
     autoLogout(tokenExpirationDuration: number) {
         this._tokenExpirationTimer = setTimeout(() => {
             this.logout();
@@ -149,13 +328,21 @@ export class AuthService {
                     duration: 2000
                 }
             );
-        }, 300000);
+        }, tokenExpirationDuration - 300000);
     }
 
+    /**
+     * Service to initiate Google Authentication
+     *
+     */
     GoogleAuth() {
         return this.AuthLogin(new GoogleAuthProvider());
     }
-    // Auth logic to run auth providers
+
+    /**
+     * Initiates Authentication using `Google Auth Provider`
+     *
+     */
     async AuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
         try {
             const result = await this.afAuth
@@ -176,7 +363,7 @@ export class AuthService {
                         );
                         localStorage.setItem('user_data', JSON.stringify(user));
                     });
-            
+
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
@@ -195,6 +382,30 @@ export class AuthService {
         }
     }
 
+    /**
+     * Sends a password reset email by issuing an `HTTP POST` request to the Auth `getOobConfirmationCode` endpoint.
+     *
+     * @param email The user email.
+     *
+     * @return  An `Observable` for the request, with a response body in the
+     * requested type.
+     */
+    passwordReset(email: string) {
+        return this.httpClient.post(
+            `${CommonConstants.getOobConfirmationCode}?key=${FirebaseSettings.apiKey}`,
+            {
+                requestType: "PASSWORD_RESET",
+                email: email
+            }
+        ).pipe(
+            catchError(this._handleError)
+        )
+    }
+
+    /**
+     * Unsuccessful authentication handler
+     *
+     */
     private _handleError(_errorResponse: HttpErrorResponse) {
         let message: string = 'An unknown error has occurred';
         if (!_errorResponse.error || !_errorResponse.error.error) {
@@ -214,18 +425,29 @@ export class AuthService {
             case 'INVALID_PASSWORD':
                 message = "Entered email address or password is invalid.";
                 break;
+            case 'INVALID_EMAIL':
+                message = "The email address is badly formatted.";
+                break;
+            case 'EMAIL_NOT_FOUND':
+                message = "There is no user record corresponding to this identifier. The user may have been deleted.";
+                break;
         }
 
         const err = new Error(message);
         return throwError(() => err);
     }
 
+    /**
+     * Successful authentication handler
+     *
+     */
     private _handleAuthentication(
         email: string,
         localId: string,
         idToken: string,
         refreshToken: string,
-        expiresIn: number
+        expiresIn: number,
+        _name: string
     ) {
         const tokenExpirationdate = new Date(new Date().getTime() + +expiresIn * 1000);
         const user = new User(
@@ -233,7 +455,8 @@ export class AuthService {
             localId,
             idToken,
             refreshToken,
-            tokenExpirationdate
+            tokenExpirationdate,
+            _name
         );
         this.user.next(user);
         this.autoLogout(expiresIn * 1000);

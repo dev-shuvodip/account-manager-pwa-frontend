@@ -62,10 +62,16 @@ section {
 }
 
 .icon-overlay {
-  margin-right: 2px;
+  margin-right: 5px;
   vertical-align: middle;
 }
 
 .spacer-span {
   margin-right: 10px;
+}
+
+.forgotPwdBtn {
+  float: right;
+  padding: 0px;
+  line-height: 0px;
 }

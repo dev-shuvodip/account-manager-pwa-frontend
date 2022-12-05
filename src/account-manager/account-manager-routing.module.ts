@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OverviewComponent } from './landing-page/overview/overview.component';
 import { AuthComponent } from './shared/auth/auth.component';
-import { AuthGuard } from './shared/auth/auth.guard';
+import { AuthGuard } from './shared/auth/services/auth.guard';
 import CommonConstants from './shared/common-constants';
 
 const routes: Routes = [
