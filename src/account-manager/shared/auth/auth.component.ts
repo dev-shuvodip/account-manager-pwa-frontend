@@ -7,7 +7,7 @@ import {
     HttpClient,
     HttpClientModule
 } from "@angular/common/http";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import {
     FormBuilder,
     FormControl,
@@ -45,6 +45,7 @@ export class AuthComponent implements OnInit {
     error: string | null = null;
     isAuthenticated: boolean = false;
     @ViewChild('loginForm', { static: false }) loginForm: NgForm;
+    viewportInnerWidth: number = window.innerWidth;
 
     constructor(
         public authService: AuthService,
@@ -145,5 +146,10 @@ export class AuthComponent implements OnInit {
             hasBackdrop: true
         });
         window.document.querySelector<any>('.passwordResetBackdrop').parentNode.style.zIndex = "9999";
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event: UIEvent) {
+        this.viewportInnerWidth = window.innerWidth;
     }
 }

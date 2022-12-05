@@ -27,7 +27,7 @@ import { Router } from "@angular/router";
 import CommonConstants from "../../common-constants";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component";
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { IUserUpdateResponse } from "../models/IUserUpdateResponse";
@@ -336,14 +336,14 @@ export class AuthService {
      *
      */
     GoogleAuth() {
-        return this.AuthLogin(new GoogleAuthProvider());
+        return this.GoogleAuthLogin(new GoogleAuthProvider());
     }
 
     /**
      * Initiates Authentication using `Google Auth Provider`
      *
      */
-    async AuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
+    async GoogleAuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
         try {
             const result = await this.afAuth
                 .signInWithPopup(provider).then(

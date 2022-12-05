@@ -20,12 +20,12 @@
 }
 
 .field-container {
-  width: 50vw;
   padding-bottom: 5px;
 }
 
 mat-card-actions {
   margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 section {
@@ -40,9 +40,16 @@ section {
   margin: 8px 8px 8px 0;
 }
 
-/* .botton-overlay {
-  margin: 3px 2px 2px 0 !important;
+/* .social-botton-overlay {
 } */
+
+.social-botton-overlay-small {
+  position: absolute;
+  left: 50%;
+  margin-top: 15px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
 
 .mat-card-actions .mat-button,
 .mat-card-actions .mat-raised-button,
@@ -74,4 +81,8 @@ section {
 .forgotPwdBtn {
   float: right;
   padding: 0px;
+}
+
+.warningSpan {
+  content: "\26A0";
 }

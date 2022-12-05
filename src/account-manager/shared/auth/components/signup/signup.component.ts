@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   hide: boolean = true;
   isLoading: boolean = false;
   error: string | null = null;
+  viewportInnerWidth: number = window.innerWidth;
 
   constructor(
     public authService: AuthService,
@@ -85,6 +86,11 @@ export class SignupComponent implements OnInit, OnDestroy {
         duration: 2000
       }
     );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: UIEvent) {
+    this.viewportInnerWidth = window.innerWidth;
   }
 
   ngOnDestroy(): void { }
