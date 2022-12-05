@@ -40,21 +40,22 @@ section {
   margin: 8px 8px 8px 0;
 }
 
-/* .social-botton-overlay {
-} */
+.social-botton-overlay {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .social-botton-overlay-small {
   position: absolute;
   left: 50%;
-  margin-top: 15px;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
 }
 
 .mat-card-actions .mat-button,
 .mat-card-actions .mat-raised-button,
 .mat-card-actions .mat-stroked-button {
-  margin: 3px 2px 2px 0 !important;
+  margin: 15px -50% 0 0 !important;
 }
 
 .mat-card {
@@ -85,4 +86,18 @@ section {
 
 .warningSpan {
   content: "\26A0";
+}
+
+.social-divider {
+  text-align: center;
+  line-height: 0em;
+  margin: 25px;
+  border-bottom: 1px solid rgb(173 173 173);
+}
+
+.social-divider span {
+  background: #fff;
+  padding: 0 10px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
 }

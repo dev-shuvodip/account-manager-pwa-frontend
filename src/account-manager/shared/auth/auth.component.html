@@ -159,11 +159,9 @@
               <span class="spacer-span"></span>
             </div>
           </section>
-          <br />
-          <mat-divider></mat-divider>
-          <br />
+          <div class="social-divider"><span>or</span></div>
           <section>
-            <div *ngIf="viewportInnerWidth >= 481" class="form-button-row">
+            <div *ngIf="viewportInnerWidth >= 321" class="form-button-row">
               <button
                 type="button"
                 mat-raised-button
@@ -179,7 +177,7 @@
               </button>
               <span class="spacer-span"></span>
             </div>
-            <div *ngIf="viewportInnerWidth < 481" class="form-button-row">
+            <div *ngIf="viewportInnerWidth < 321" class="form-button-row">
               <button
                 class="social-botton-overlay-small"
                 mat-icon-button
