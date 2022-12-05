@@ -22,7 +22,7 @@ export default class CommonConstants {
 
     //#endregion
 
-    //#region Firebase REST Api Endpoints
+    //#region Firebase Auth REST Api endpoints
     static readonly signupNewUser = "https://identitytoolkit.googleapis.com/v1/accounts:signUp";
     static readonly verifyPassword = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
     static readonly setAccountInfo = "https://identitytoolkit.googleapis.com/v1/accounts:update";
