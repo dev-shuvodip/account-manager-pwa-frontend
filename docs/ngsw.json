@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1670219700164,
+  "timestamp": 1670236690579,
   "index": "/account-manager-pwa-frontend/index.html",
   "assetGroups": [
     {
@@ -18,7 +18,7 @@
         "/account-manager-pwa-frontend/889.ddec8157b86638e3.js",
         "/account-manager-pwa-frontend/favicon.ico",
         "/account-manager-pwa-frontend/index.html",
-        "/account-manager-pwa-frontend/main.4622f67439fe8e30.js",
+        "/account-manager-pwa-frontend/main.39060082e5dfa183.js",
         "/account-manager-pwa-frontend/manifest.webmanifest",
         "/account-manager-pwa-frontend/polyfills.df24a2411fa6f16b.js",
         "/account-manager-pwa-frontend/runtime.28b70545579b6ee2.js",
@@ -64,8 +64,8 @@
     "/account-manager-pwa-frontend/assets/icons/icon-72x72.png": "ff02608627c8125ed013fff5465da0b4a364fa22",
     "/account-manager-pwa-frontend/assets/icons/icon-96x96.png": "567d6cb36be826ebb488c2cc347abe5aa5bf3efb",
     "/account-manager-pwa-frontend/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/account-manager-pwa-frontend/index.html": "fd0e7fad7c77a97053be8ed234a3de98cb693b33",
-    "/account-manager-pwa-frontend/main.4622f67439fe8e30.js": "dd4a115c90d707dacbedb5911ab145c843d80eb9",
+    "/account-manager-pwa-frontend/index.html": "0704dbec3ec82e8571c37918378a4b53553ca4fc",
+    "/account-manager-pwa-frontend/main.39060082e5dfa183.js": "444fecfa93ee7db78ab8f5aaab9f7d355ab63829",
     "/account-manager-pwa-frontend/manifest.webmanifest": "5d13cde3694b44f872879a1123a69e86e70cee9a",
     "/account-manager-pwa-frontend/polyfills.df24a2411fa6f16b.js": "4bd7122f37ec1ba7dd477eba3443a5c7dd7b4784",
     "/account-manager-pwa-frontend/runtime.28b70545579b6ee2.js": "6405938ce026595330d43a7482c7e2999aadb729",

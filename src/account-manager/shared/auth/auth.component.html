@@ -28,8 +28,16 @@
                   name="email"
                   required
                   email
+                  #email="ngModel"
                 />
-                <mat-error></mat-error>
+                <mat-error *ngIf="email.errors"
+                  ><span *ngIf="email.errors['required']"
+                    >Email is required</span
+                  >
+                  <span *ngIf="email.errors['email']"
+                    >Please enter a valid email</span
+                  ></mat-error
+                >
               </mat-form-field>
             </section>
             <section>
@@ -40,9 +48,9 @@
                   [type]="hide ? 'password' : 'text'"
                   ngModel
                   name="password"
+                  #password="ngModel"
                   autocomplete="off"
                   required
-                  minlength="6"
                 />
                 <button
                   mat-icon-button
@@ -55,7 +63,11 @@
                     hide ? "visibility_off" : "visibility"
                   }}</mat-icon>
                 </button>
-                <mat-error></mat-error>
+                <mat-error *ngIf="password.errors"
+                  ><span *ngIf="password.errors['required']"
+                    >Password is required</span
+                  >
+                </mat-error>
               </mat-form-field>
               <button
                 class="forgotPwdBtn"
@@ -63,7 +75,7 @@
                 (click)="openPasswordResetDialog()"
               >
                 Forgot password?
-            </button>
+              </button>
             </section>
           </span>
         </mat-card-content>

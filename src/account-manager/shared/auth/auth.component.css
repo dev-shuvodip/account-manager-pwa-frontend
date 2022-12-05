@@ -21,6 +21,7 @@
 
 .field-container {
   width: 50vw;
+  padding-bottom: 5px;
 }
 
 mat-card-actions {
@@ -73,5 +74,4 @@ section {
 .forgotPwdBtn {
   float: right;
   padding: 0px;
-  line-height: 0px;
 }
