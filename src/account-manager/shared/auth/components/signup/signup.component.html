@@ -32,7 +32,7 @@
                 minlength="3"
               />
               <mat-error
-                *ngIf="displayName.errors && viewportInnerWidth >= 481"
+                *ngIf="displayName.errors && viewportInnerWidth >= 401"
               >
                 <span class="warningSpan" *ngIf="displayName.errors['required']"
                   >&#9888; Name is required</span
@@ -43,7 +43,7 @@
                   >&#9888; Name must be atleast 3 characters</span
                 >
               </mat-error>
-              <mat-error *ngIf="displayName.errors && viewportInnerWidth < 481">
+              <mat-error *ngIf="displayName.errors && viewportInnerWidth < 401">
                 <span
                   #tooltip1="matTooltip"
                   (click)="tooltip1.toggle()"
@@ -87,7 +87,7 @@
                 required
                 email
               />
-              <mat-error *ngIf="email.errors && viewportInnerWidth >= 481"
+              <mat-error *ngIf="email.errors && viewportInnerWidth >= 401"
                 ><span class="warningSpan" *ngIf="email.errors['required']"
                   >&#9888; Email is required</span
                 >
@@ -95,7 +95,7 @@
                   >&#9888; Please enter a valid email</span
                 >
               </mat-error>
-              <mat-error *ngIf="email.errors && viewportInnerWidth < 481">
+              <mat-error *ngIf="email.errors && viewportInnerWidth < 401">
                 <span
                   #tooltip3="matTooltip"
                   (click)="tooltip3.toggle()"
@@ -152,7 +152,7 @@
                   hide ? "visibility_off" : "visibility"
                 }}</mat-icon>
               </button>
-              <mat-error *ngIf="password.errors && viewportInnerWidth >= 481"
+              <mat-error *ngIf="password.errors && viewportInnerWidth >= 401"
                 ><span class="warningSpan" *ngIf="password.errors['required']"
                   >&#9888; Password is required</span
                 >
@@ -161,7 +161,7 @@
                   contain alphanumeric and special characters
                 </span>
               </mat-error>
-              <mat-error *ngIf="password.errors && viewportInnerWidth < 481">
+              <mat-error *ngIf="password.errors && viewportInnerWidth < 401">
                 <span
                   #tooltip5="matTooltip"
                   (click)="tooltip5.toggle()"
