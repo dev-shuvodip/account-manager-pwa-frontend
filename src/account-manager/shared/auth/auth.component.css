@@ -19,8 +19,12 @@
   overflow-y: auto;
 }
 
-.field-container {
+/* .field-container {
   padding-bottom: 5px;
+} */
+
+.mat-card-content {
+  margin-bottom: 0 !important;
 }
 
 mat-card-actions {
