@@ -9,12 +9,20 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.cdk-overlay-container {
+  z-index: 10000 !important;
+}
+
 .signUpBackdrop {
-  background-color:rgba(255,255,255,.3);
+  background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
 }
 
 .passwordResetBackdrop {
-  background-color:rgba(255,255,255,.3);
+  background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
+}
+
+.mat-form-field {
+  width: -webkit-fill-available !important;
 }

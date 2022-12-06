@@ -23,12 +23,9 @@ mat-card-actions {
   margin-right: 0 !important;
 }
 
-section {
+.form-button-section {
   display: table;
-}
-
-.form-button-row {
-  display: table-cell;
+  margin-top: 5px;
 }
 
 .form-button-row .mat-mdc-button-base {

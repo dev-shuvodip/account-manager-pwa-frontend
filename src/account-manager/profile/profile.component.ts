@@ -1,4 +1,5 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -16,14 +17,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   error: string | null = null;
   isAuthenticated: boolean = false;
+  isEdit: boolean = false;
   user: User;
   pageTitle?: string = CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Profile)?.displayText;
+  viewportInnerWidth: number = window.innerWidth;
 
   constructor(
     private router: Router,
     private zone: NgZone,
     private authService: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -35,5 +39,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+  }
+
+  onClick() {
+    this.isEdit = !this.isEdit;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: UIEvent) {
+    this.viewportInnerWidth = window.innerWidth;
   }
 }

@@ -81,9 +81,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
       SnackbarComponent,
       {
         data: 'Logged out successfully',
-        duration: 2000
+        duration: 2000,
+        panelClass: 'snackbarOverlay'
       }
     );
+    window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
   }
 
   ngOnDestroy(): void {

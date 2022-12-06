@@ -29,11 +29,7 @@
         <mat-card-content>
           <br />
           <section>
-            <mat-form-field
-              appearance="outline"
-              [style.width.vw]="viewportInnerWidth < 481 ? '55' : '50'"
-              class="field-container"
-            >
+            <mat-form-field appearance="outline">
               <mat-label>Enter email</mat-label>
               <input
                 matInput
@@ -75,11 +71,7 @@
             </mat-form-field>
           </section>
           <section>
-            <mat-form-field
-              appearance="outline"
-              [style.width.vw]="viewportInnerWidth < 481 ? '55' : '50'"
-              class="field-container"
-            >
+            <mat-form-field appearance="outline">
               <mat-label>Enter password</mat-label>
               <input
                 matInput
@@ -118,32 +110,32 @@
                 >
               </mat-error>
             </mat-form-field>
+          </section>
+          <section>
             <button
               mat-button
               type="button"
               class="forgotPwdBtn"
               (click)="openPasswordResetDialog()"
             >
-              Forgot password?
+              Reset password
             </button>
           </section>
         </mat-card-content>
         <mat-card-actions>
-          <section>
-            <div class="form-button-row">
-              <button
-                mat-raised-button
-                type="submit"
-                class="botton-overlay"
-                color="primary"
-                [disabled]="!loginForm.valid"
-              >
-                <mat-icon class="icon-overlay">login</mat-icon>
+          <section class="form-button-section">
+            <button
+              mat-raised-button
+              type="submit"
+              class="botton-overlay"
+              color="primary"
+              [disabled]="!loginForm.valid"
+            >
+              <mat-icon class="icon-overlay">login</mat-icon>
 
-                <span>Login</span>
-              </button>
-              <span class="spacer-span"></span>
-            </div>
+              <span>Login</span>
+            </button>
+            <span class="spacer-span"></span>
           </section>
           <div class="social-divider"><span>or</span></div>
           <section>

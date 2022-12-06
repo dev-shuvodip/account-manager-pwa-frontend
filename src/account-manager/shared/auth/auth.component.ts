@@ -88,18 +88,22 @@ export class AuthComponent implements OnInit {
                             SnackbarComponent,
                             {
                                 data: 'Logged in successfully',
-                                duration: 2000
+                                duration: 2000,
+                                panelClass: 'snackbarOverlay'
                             }
                         );
+                        window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
                     } else {
                         this.isLoading = false;
                         this._snackBar.openFromComponent(
                             SnackbarComponent,
                             {
                                 data: 'Please verify your email. Check Spam/Junk folder and mark sender as not spam',
-                                duration: 5000
+                                duration: 5000,
+                                panelClass: 'snackbarOverlay'
                             }
                         );
+                        window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
                     }
                 },
                 error: (errorMessage) => {
@@ -125,9 +129,11 @@ export class AuthComponent implements OnInit {
             SnackbarComponent,
             {
                 data: this.error,
-                duration: 2000
+                duration: 2000,
+                panelClass: 'snackbarOverlay'
             }
         );
+        window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
     }
 
     openSignUpDialog() {

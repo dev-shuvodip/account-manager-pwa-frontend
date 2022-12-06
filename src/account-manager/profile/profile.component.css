@@ -1,5 +1,4 @@
 .page-container {
-  z-index: -1;
   height: calc(100vh - 100px);
   width: calc(100vw * 0.85);
   display: flex;
@@ -28,4 +27,24 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+
+mat-card-actions {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.mat-button,
+.mat-raised-button,
+.mat-stroked-button {
+  margin: 3px 2px 2px 0.55em !important;
+}
+
+.icon-overlay {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.spacer-span {
+  margin-right: 10px;
 }

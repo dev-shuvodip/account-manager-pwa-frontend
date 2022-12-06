@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
@@ -17,7 +17,9 @@ import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
     ProfileRoutingModule,
     LoadingSpinnerComponent,
     MaterialModule,
-    SnackbarComponent
+    SnackbarComponent,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProfileModule { }

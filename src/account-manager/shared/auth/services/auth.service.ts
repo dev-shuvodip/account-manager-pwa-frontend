@@ -31,6 +31,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { IUserUpdateResponse } from "../models/IUserUpdateResponse";
 import { IGetUserResponse } from "../models/IGetUserResponse";
+import { IEmailUpdateResponse } from "../models/IEmailUpdateResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -231,6 +232,34 @@ export class AuthService {
     }
 
     /**
+     * Updates user email on provided parameters
+     * by issuing an HTTP POST request to the Auth `setAccountInfo ` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param idToken The id token issued for the current user.
+     * @param email User email
+     * @param _returnSecureToken Whether or not to return an ID and refresh token.
+     *
+     * @return  An `Observable` of the `IEmailUpdateResponse` for the request, with a response body in the
+     * requested type.
+     */
+    updateEmail(
+        idToken: string,
+        email: string,
+        _returnSecureToken?: boolean
+    ): Observable<IEmailUpdateResponse> {
+        const body = {
+            idToken: idToken,
+            email: email,
+            returnSecureToken: _returnSecureToken
+        }
+        return this.httpClient.post<IEmailUpdateResponse>(
+            `${CommonConstants.setAccountInfo}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
+    }
+
+    /**
      * Automatically logs in the current user on load of application
      * based on the id token expiraion duration
      *
@@ -315,18 +344,22 @@ export class AuthService {
                 SnackbarComponent,
                 {
                     data: 'Current session ended',
-                    duration: 2000
+                    duration: 2000,
+                    panelClass: 'snackbarOverlay'
                 }
             );
+            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
         }, tokenExpirationDuration)
         this._tokenExpirationWarningTimer = setTimeout(() => {
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
                     data: 'Your current session is about to end in 5 minutes',
-                    duration: 2000
+                    duration: 2000,
+                    panelClass: 'snackbarOverlay'
                 }
             );
+            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
         }, tokenExpirationDuration - 300000);
     }
 
@@ -367,17 +400,21 @@ export class AuthService {
                 SnackbarComponent,
                 {
                     data: 'Logged in successfully',
-                    duration: 2000
+                    duration: 2000,
+                    panelClass: 'snackbarOverlay'
                 }
             );
+            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
         } catch (error) {
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
                     data: error.message.split(':')[1].split('.')[0],
-                    duration: 2000
+                    duration: 2000,
+                    panelClass: 'snackbarOverlay'
                 }
             );
+            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
         }
     }
 

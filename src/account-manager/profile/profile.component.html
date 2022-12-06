@@ -4,11 +4,89 @@
   </ng-container>
   <div *ngIf="!isLoading" class="page-content">
     <mat-card class="card-content">
+      <h5>Profile details</h5>
+      <br />
       <mat-card-content class="m-2">
-        <span>
-          <b>{{ pageTitle }} page. Work in progress!</b>
-        </span>
+        <section>
+          <mat-form-field class="field-container" appearance="outline">
+            <mat-label *ngIf="isEdit">Enter Email</mat-label>
+            <mat-label *ngIf="!isEdit">Email</mat-label>
+            <input
+              name="email"
+              #email="ngModel"
+              [(ngModel)]="user.email"
+              matInput
+              placeholder="Placeholder"
+              [disabled]="!isEdit"
+              email
+            />
+            <mat-error *ngIf="email.errors && viewportInnerWidth >= 401">
+              <span class="warningSpan" *ngIf="email.errors['email']"
+                >&#9888; Please enter a valid email</span
+              >
+            </mat-error>
+            <mat-error *ngIf="email.errors && viewportInnerWidth < 401">
+              <span
+                #tooltip="matTooltip"
+                (click)="tooltip.toggle()"
+                *ngIf="email.errors['email']"
+                matTooltip="Please enter a valid email"
+                matTooltipPosition="below"
+                class="warningSpan"
+                >&#9888;</span
+              >
+            </mat-error>
+          </mat-form-field>
+        </section>
+        <section>
+          <mat-form-field class="field-container" appearance="outline">
+            <mat-label *ngIf="isEdit">Enter Name</mat-label>
+            <mat-label *ngIf="!isEdit">Name</mat-label>
+            <input
+              name="displayName"
+              #displayName="ngModel"
+              [(ngModel)]="user.name"
+              matInput
+              placeholder="Placeholder"
+              [disabled]="!isEdit"
+              minlength="3"
+            />
+            <mat-error *ngIf="displayName.errors && viewportInnerWidth >= 401">
+              <span class="warningSpan" *ngIf="displayName.errors['minlength']"
+                >&#9888; Name must be atleast 3 characters</span
+              >
+            </mat-error>
+            <mat-error *ngIf="displayName.errors && viewportInnerWidth < 401">
+              <span
+                #tooltip2="matTooltip"
+                (click)="tooltip2.toggle()"
+                *ngIf="displayName.errors['minlength']"
+                matTooltip="Name must be atleast 3 characters"
+                matTooltipPosition="below"
+                class="warningSpan"
+                >&#9888;</span
+              >
+            </mat-error>
+          </mat-form-field>
+        </section>
       </mat-card-content>
+      <mat-card-actions>
+        <section>
+          <button
+            mat-raised-button
+            type="button"
+            class="botton-overlay"
+            color="primary"
+            (click)="onClick()"
+            [disabled]="isEdit ? !email.valid || !displayName.valid : false"
+          >
+            <mat-icon *ngIf="!isEdit" class="icon-overlay">edit</mat-icon>
+            <mat-icon *ngIf="isEdit" class="icon-overlay">save</mat-icon>
+            <span *ngIf="!isEdit">Edit details</span>
+            <span *ngIf="isEdit">Save changes</span>
+          </button>
+        </section>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>

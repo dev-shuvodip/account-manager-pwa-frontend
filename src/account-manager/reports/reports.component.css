@@ -1,5 +1,4 @@
 .page-container {
-  z-index: -1;
   height: calc(100vh - 100px);
   width: calc(100vw * 0.85);
   display: flex;
