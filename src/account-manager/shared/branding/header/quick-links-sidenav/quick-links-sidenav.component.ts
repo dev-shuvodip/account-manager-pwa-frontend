@@ -12,8 +12,7 @@ import { SharedService } from 'src/account-manager/shared/services/shared.servic
 @Component({
   selector: 'app-quick-links-sidenav',
   templateUrl: './quick-links-sidenav.component.html',
-  styleUrls: ['./quick-links-sidenav.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./quick-links-sidenav.component.css']
 })
 export class QuickLinksSidenavComponent implements OnInit {
   routesModule!: { key?: string, value?: string, displayText?: string }[];

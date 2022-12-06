@@ -1,7 +1,7 @@
 .page-container {
   z-index: -1;
   height: calc(100vh - 100px);
-  width: calc(100vw - 200px);
+  width: calc(100vw * 0.85);
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 15%),
