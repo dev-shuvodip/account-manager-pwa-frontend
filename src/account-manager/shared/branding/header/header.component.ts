@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
   @ViewChild(QuickLinksSidenavComponent, { static: true }) quickLinksSidenav!: QuickLinksSidenavComponent;
   pageTitle?: string = CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.displayText;
+  profileRoute?: string = CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Profile)?.value;
   viewportInnerWidth: number = window.innerWidth;
   screenOrientation: string = window.screen.orientation.type;
 

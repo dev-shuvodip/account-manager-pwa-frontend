@@ -2,7 +2,8 @@ import {
   Component,
   NgZone,
   OnInit,
-  ViewChild
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
@@ -11,7 +12,8 @@ import { SharedService } from 'src/account-manager/shared/services/shared.servic
 @Component({
   selector: 'app-quick-links-sidenav',
   templateUrl: './quick-links-sidenav.component.html',
-  styleUrls: ['./quick-links-sidenav.component.css']
+  styleUrls: ['./quick-links-sidenav.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class QuickLinksSidenavComponent implements OnInit {
   routesModule!: { key?: string, value?: string, displayText?: string }[];

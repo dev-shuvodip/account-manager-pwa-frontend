@@ -4,14 +4,16 @@ export default class CommonConstants {
     static readonly Landing: string = "Landing";
     static readonly TransactionManagement: string = "TransactionManagement";
     static readonly Reports: string = "Reports";
+    static readonly Profile: string = "Profile";
 
     //#endregion
 
     //#region Modules
     static readonly ModulesRoutes: { key?: string, value?: string, displayText?: string }[] = [
         { key: CommonConstants.Landing, value: 'Landing', displayText: 'Home' },
+        { key: CommonConstants.Profile, value: 'Profile', displayText: 'Profile' },
         { key: CommonConstants.TransactionManagement, value: 'TransactionManagement', displayText: 'Manage Transactions' },
-        { key: CommonConstants.Reports, value: "Reports", displayText: 'Generate Reports' }
+        { key: CommonConstants.Reports, value: 'Reports', displayText: 'Generate Reports' }
     ];
 
     //#endregion

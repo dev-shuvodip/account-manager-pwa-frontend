@@ -26,6 +26,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
   },
+  {
+    path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Profile)?.value,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+  },
   { path: '**', redirectTo: CommonConstants.Landing, pathMatch: 'full' }
 ];
 

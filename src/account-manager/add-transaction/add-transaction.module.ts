@@ -5,6 +5,8 @@ import { MaterialModule } from '../material/material.module';
 
 import { AddTransactionRoutingModule } from './add-transaction-routing.module';
 import { AddTransactionComponent } from './add-transaction.component';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
+import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { AddTransactionComponent } from './add-transaction.component';
   imports: [
     CommonModule,
     AddTransactionRoutingModule,
-    MaterialModule
+    MaterialModule,
+    LoadingSpinnerComponent,
+    SnackbarComponent
   ],
   providers: []
 })

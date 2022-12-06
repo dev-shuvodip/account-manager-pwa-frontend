@@ -21,7 +21,6 @@ import {
 } from "rxjs/operators";
 import { IAuthResponse } from "../models/IAuthResponse";
 import { IRefreshToken } from "../models/IRefreshToken";
-import { IUser } from "../../models/IUser";
 import { User } from "../../models/User.model";
 import { Router } from "@angular/router";
 import CommonConstants from "../../common-constants";
@@ -62,7 +61,7 @@ export class AuthService {
      * requested type.
      */
     signup(email: string, password: string, displayName: string) {
-        const body: IUser = {
+        const body = {
             email: email,
             password: password,
             returnSecureToken: true
@@ -141,7 +140,7 @@ export class AuthService {
      * requested type.
      */
     login(email: string, password: string) {
-        const body: IUser = {
+        const body = {
             email: email,
             password: password,
             returnSecureToken: true
@@ -243,7 +242,7 @@ export class AuthService {
             _token: string;
             _refreshToken: string;
             _tokenExpirationdate: string;
-            _name: string;
+            name: string;
         } = JSON.parse(localStorage.getItem('user_data'));
 
         if (!userData) {
@@ -256,7 +255,7 @@ export class AuthService {
             userData._token,
             userData._refreshToken,
             new Date(userData._tokenExpirationdate),
-            userData._name
+            userData.name
         );
 
         if (loadedUser.token) {

@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material/material.module';
 
-import { ReportsRoutingModule } from './reports-routing.module';
-import { ReportsComponent } from './reports.component';
+import { ProfileRoutingModule } from './profile-routing.module';
+import { ProfileComponent } from './profile.component';
 import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
+import { MaterialModule } from '../material/material.module';
 import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
 
 
 @NgModule({
   declarations: [
-    ReportsComponent
+    ProfileComponent
   ],
   imports: [
     CommonModule,
-    ReportsRoutingModule,
-    MaterialModule,
+    ProfileRoutingModule,
     LoadingSpinnerComponent,
+    MaterialModule,
     SnackbarComponent
   ]
 })
-export class ReportsModule { }
+export class ProfileModule { }

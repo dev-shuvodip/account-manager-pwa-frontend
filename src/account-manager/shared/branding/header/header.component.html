@@ -26,7 +26,13 @@
   <span class="header-spacer"></span>
   <ng-container *ngIf="isAuthenticated">
     <div *ngIf="viewportInnerWidth >= 480">
-      <button *ngIf="loadDisplayName()" mat-button>
+      <button
+        *ngIf="loadDisplayName()"
+        mat-button
+        attr.data-link="{{ profileRoute }}"
+        (click)="Navigate($event)"
+        (keyup.enter)="Navigate($event)"
+      >
         <span> Hi, {{ loadDisplayName() }} </span>
       </button>
       <button mat-button (click)="onLogout()">
@@ -42,7 +48,13 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button *ngIf="loadDisplayName()" mat-menu-item>
+      <button
+        *ngIf="loadDisplayName()"
+        mat-menu-item
+        attr.data-link="{{ profileRoute }}"
+        (click)="Navigate($event)"
+        (keyup.enter)="Navigate($event)"
+      >
         <span> Hi, {{ loadDisplayName() }} </span>
       </button>
       <button mat-menu-item (click)="onLogout()">

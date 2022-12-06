@@ -27,116 +27,106 @@
       </button>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <mat-card-content>
-          <span class="card-content">
-            <br />
-            <section>
-              <mat-form-field
-                appearance="outline"
-                [style.width.vw]="
-                  viewportInnerWidth <  481
-                  ? '55'
-                  : '50'
-                "
-                class="field-container"
-              >
-                <mat-label>Enter email</mat-label>
-                <input
-                  matInput
-                  placeholder="pat@example.com"
-                  ngModel
-                  name="email"
-                  required
-                  email
-                  #email="ngModel"
-                />
-                <mat-error *ngIf="email.errors && viewportInnerWidth >= 401"
-                  ><span class="warningSpan" *ngIf="email.errors['required']"
-                    >&#9888; Email is required</span
-                  >
-                  <span class="warningSpan" *ngIf="email.errors['email']"
-                    >&#9888; Please enter a valid email</span
-                  ></mat-error
+          <br />
+          <section>
+            <mat-form-field
+              appearance="outline"
+              [style.width.vw]="viewportInnerWidth < 481 ? '55' : '50'"
+              class="field-container"
+            >
+              <mat-label>Enter email</mat-label>
+              <input
+                matInput
+                placeholder="pat@example.com"
+                ngModel
+                name="email"
+                required
+                email
+                #email="ngModel"
+              />
+              <mat-error *ngIf="email.errors && viewportInnerWidth >= 401"
+                ><span class="warningSpan" *ngIf="email.errors['required']"
+                  >&#9888; Email is required</span
                 >
-                <mat-error *ngIf="email.errors && viewportInnerWidth < 401">
-                  <span
-                    #tooltip1="matTooltip"
-                    (click)="tooltip1.toggle()"
-                    *ngIf="email.errors['required']"
-                    matTooltip="Email is required"
-                    matTooltipPosition="below"
-                    class="warningSpan"
-                    >&#9888;</span
-                  >
-                  <span
-                    #tooltip2="matTooltip"
-                    (click)="tooltip2.toggle()"
-                    *ngIf="email.errors['email']"
-                    matTooltip="Please enter a valid email"
-                    matTooltipPosition="below"
-                    class="warningSpan"
-                    >&#9888;</span
-                  >
-                </mat-error>
-              </mat-form-field>
-            </section>
-            <section>
-              <mat-form-field
-                appearance="outline"
-                [style.width.vw]="
-                  viewportInnerWidth <  481
-                  ? '55'
-                  : '50'
-                "
-                class="field-container"
+                <span class="warningSpan" *ngIf="email.errors['email']"
+                  >&#9888; Please enter a valid email</span
+                ></mat-error
               >
-                <mat-label>Enter password</mat-label>
-                <input
-                  matInput
-                  [type]="hide ? 'password' : 'text'"
-                  ngModel
-                  name="password"
-                  #password="ngModel"
-                  autocomplete="off"
-                  required
-                />
-                <button
-                  mat-icon-button
-                  matSuffix
-                  (click)="hide = !hide"
-                  [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
-                  [attr.aria-pressed]="hide"
+              <mat-error *ngIf="email.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip1="matTooltip"
+                  (click)="tooltip1.toggle()"
+                  *ngIf="email.errors['required']"
+                  matTooltip="Email is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
                 >
-                  <mat-icon>{{
-                    hide ? "visibility_off" : "visibility"
-                  }}</mat-icon>
-                </button>
-                <mat-error *ngIf="password.errors && viewportInnerWidth >= 401"
-                  ><span class="warningSpan" *ngIf="password.errors['required']"
-                    >&#9888; Password is required</span
-                  >
-                </mat-error>
-                <mat-error *ngIf="password.errors && viewportInnerWidth < 401">
-                  <span
-                    #tooltip3="matTooltip"
-                    (click)="tooltip3.toggle()"
-                    *ngIf="password.errors['required']"
-                    matTooltip="Password is required"
-                    matTooltipPosition="below"
-                    class="warningSpan"
-                    >&#9888;</span
-                  >
-                </mat-error>
-              </mat-form-field>
+                <span
+                  #tooltip2="matTooltip"
+                  (click)="tooltip2.toggle()"
+                  *ngIf="email.errors['email']"
+                  matTooltip="Please enter a valid email"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </section>
+          <section>
+            <mat-form-field
+              appearance="outline"
+              [style.width.vw]="viewportInnerWidth < 481 ? '55' : '50'"
+              class="field-container"
+            >
+              <mat-label>Enter password</mat-label>
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                ngModel
+                name="password"
+                #password="ngModel"
+                autocomplete="off"
+                required
+              />
               <button
-                mat-button
-                type="button"
-                class="forgotPwdBtn"
-                (click)="openPasswordResetDialog()"
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
+                [attr.aria-pressed]="hide"
               >
-                Forgot password?
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
               </button>
-            </section>
-          </span>
+              <mat-error *ngIf="password.errors && viewportInnerWidth >= 401"
+                ><span class="warningSpan" *ngIf="password.errors['required']"
+                  >&#9888; Password is required</span
+                >
+              </mat-error>
+              <mat-error *ngIf="password.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip3="matTooltip"
+                  (click)="tooltip3.toggle()"
+                  *ngIf="password.errors['required']"
+                  matTooltip="Password is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
+            </mat-form-field>
+            <button
+              mat-button
+              type="button"
+              class="forgotPwdBtn"
+              (click)="openPasswordResetDialog()"
+            >
+              Forgot password?
+            </button>
+          </section>
         </mat-card-content>
         <mat-card-actions>
           <section>

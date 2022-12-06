@@ -1,5 +1,7 @@
-export interface IUser {
-    email: string;
-    password: string;
-    returnSecureToken: boolean;
+export class IUser {
+    constructor(
+        public id: string,
+        public email: string,
+        public name: string
+    ) { }
 }
