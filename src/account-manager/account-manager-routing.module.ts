@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OverviewComponent } from './landing-page/overview/overview.component';
-import { AuthComponent } from './shared/auth/auth.component';
 import { AccountManagerGuard } from './account-manager.guard';
 import CommonConstants from './shared/common-constants';
 import { AuthGuard } from './shared/auth/services/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: CommonConstants.Landing, pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: CommonConstants.Landing,
+    pathMatch: 'full'
+  },
   {
     path: CommonConstants.Authenticate,
     canActivate: [AuthGuard],
@@ -28,7 +30,11 @@ const routes: Routes = [
     canActivate: [AccountManagerGuard],
     loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
   },
-  { path: '**', redirectTo: CommonConstants.Landing, pathMatch: 'full' }
+  {
+    path: '**',
+    redirectTo: CommonConstants.Landing,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

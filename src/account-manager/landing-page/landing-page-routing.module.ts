@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AccountManagerGuard],
-    loadComponent: () => import('./overview/overview.component').then(m => m.OverviewComponent)
+    loadComponent: () => import('./components/overview/overview.component').then(m => m.OverviewComponent)
   }
 ];
 
