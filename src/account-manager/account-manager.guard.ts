@@ -7,14 +7,14 @@ import {
     UrlTree
 } from "@angular/router";
 import { map, Observable } from "rxjs";
-import CommonConstants from "../../common-constants";
-import { AuthService } from "./auth.service";
+import CommonConstants from "./shared/common-constants";
+import { AuthService } from "./shared/auth/services/auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class AuthGuard implements CanActivate {
+export class AccountManagerGuard implements CanActivate {
     constructor(
         private authService: AuthService,
         private router: Router
@@ -26,9 +26,10 @@ export class AuthGuard implements CanActivate {
     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         return this.authService.user.pipe(
             map((user) => {
-                if (!user)
-                    return true;
-                return false;
+                const isAuthenticated = !!user;
+                if (isAuthenticated)
+                    return true
+                return this.router.createUrlTree([CommonConstants.Authenticate]);
             })
         );
     }

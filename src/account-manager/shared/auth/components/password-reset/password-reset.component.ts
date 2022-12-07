@@ -41,10 +41,9 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
           {
             data: 'Initialized password reset. Please check your mail',
             duration: 3000,
-            panelClass: 'snackbarOverlay'
+
           }
         );
-        window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
         this.dialog.closeAll();
         this.isLoading = false;
       },
@@ -63,10 +62,10 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
       {
         data: this.error,
         duration: 2000,
-        panelClass: 'snackbarOverlay'
+
       }
     );
-    window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
   }
 
   @HostListener('window:resize', ['$event'])

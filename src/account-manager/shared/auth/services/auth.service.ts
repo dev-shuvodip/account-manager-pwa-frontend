@@ -345,10 +345,10 @@ export class AuthService {
                 {
                     data: 'Current session ended',
                     duration: 2000,
-                    panelClass: 'snackbarOverlay'
+
                 }
             );
-            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
         }, tokenExpirationDuration)
         this._tokenExpirationWarningTimer = setTimeout(() => {
             this._snackBar.openFromComponent(
@@ -356,10 +356,10 @@ export class AuthService {
                 {
                     data: 'Your current session is about to end in 5 minutes',
                     duration: 2000,
-                    panelClass: 'snackbarOverlay'
+
                 }
             );
-            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
         }, tokenExpirationDuration - 300000);
     }
 
@@ -401,20 +401,20 @@ export class AuthService {
                 {
                     data: 'Logged in successfully',
                     duration: 2000,
-                    panelClass: 'snackbarOverlay'
+
                 }
             );
-            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
         } catch (error) {
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
                     data: error.message.split(':')[1].split('.')[0],
                     duration: 2000,
-                    panelClass: 'snackbarOverlay'
+
                 }
             );
-            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
         }
     }
 

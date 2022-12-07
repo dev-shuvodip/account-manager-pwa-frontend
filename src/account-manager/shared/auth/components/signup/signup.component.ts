@@ -51,11 +51,10 @@ export class SignupComponent implements OnInit, OnDestroy {
               SnackbarComponent,
               {
                 data: 'Signed up successfully',
-                duration: 2000,
-                panelClass: 'snackbarOverlay'
+                duration: 2000
               }
             );
-            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
             this.dialog.closeAll();
             this.isLoading = false;
           } else {
@@ -63,11 +62,10 @@ export class SignupComponent implements OnInit, OnDestroy {
               SnackbarComponent,
               {
                 data: 'A verification mail has been sent to your mailbox. Please respond to it to verify your email',
-                duration: 5000,
-                panelClass: 'snackbarOverlay'
+                duration: 5000
               }
             );
-            window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
             this.dialog.closeAll();
             this.isLoading = false;
           }
@@ -88,10 +86,10 @@ export class SignupComponent implements OnInit, OnDestroy {
       {
         data: this.error,
         duration: 2000,
-        panelClass: 'snackbarOverlay'
+
       }
     );
-    window.document.querySelector<any>('.snackbarOverlay').parentNode.style.zIndex = "99999";
+
   }
 
   @HostListener('window:resize', ['$event'])

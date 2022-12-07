@@ -1,6 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './account-manager-routing.module';
+import { AccountManagerRoutingModule } from './account-manager-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
 import { Router } from '@angular/router';
 import { createCustomElement } from '@angular/elements';
@@ -30,9 +30,10 @@ import { FirebaseSettings } from 'firebase.config';
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AccountManagerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    A11yModule,
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
