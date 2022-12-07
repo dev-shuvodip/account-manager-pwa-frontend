@@ -29,9 +29,6 @@
       <button
         *ngIf="loadDisplayName()"
         mat-button
-        attr.data-link="{{ profileRoute }}"
-        (click)="Navigate($event)"
-        (keyup.enter)="Navigate($event)"
       >
         <span> Hi, {{ loadDisplayName() }} </span>
       </button>
@@ -51,9 +48,6 @@
       <button
         *ngIf="loadDisplayName()"
         mat-menu-item
-        attr.data-link="{{ profileRoute }}"
-        (click)="Navigate($event)"
-        (keyup.enter)="Navigate($event)"
       >
         <span> Hi, {{ loadDisplayName() }} </span>
       </button>
