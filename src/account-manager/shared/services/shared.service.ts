@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FirebaseSettings } from 'firebase.config';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IGetUserResponse } from '../auth/models/IGetUserResponse';
 import CommonConstants from '../common-constants';
 

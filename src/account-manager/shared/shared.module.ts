@@ -14,6 +14,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 import { AuthModule } from './auth/auth.module';
+import { WarningDialog } from './warning/warning.dialog';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,15 @@ import { AuthModule } from './auth/auth.module';
     FooterComponent,
     QuickLinksSidenavComponent,
     SignupComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    WarningDialog
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     QuickLinksSidenavComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    WarningDialog
   ],
   imports: [
     CommonModule,
