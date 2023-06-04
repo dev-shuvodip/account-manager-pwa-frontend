@@ -3,10 +3,8 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import CommonConstants from '../../../common-constants';
 import { SnackbarComponent } from '../../../snackbar/snackbar.component';
-import { IAuthResponse } from '../../models/IAuthResponse';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

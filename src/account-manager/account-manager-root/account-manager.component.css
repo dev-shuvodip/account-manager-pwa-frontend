@@ -13,3 +13,12 @@
 .footer {
   z-index: 9999;
 }
+
+svg {
+  margin: auto;
+    background: #ffffff;
+    display: block;
+    z-index: 0;
+    position: fixed;
+    overflow: hidden;
+}

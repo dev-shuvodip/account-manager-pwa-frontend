@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import CommonConstants from 'src/account-manager/shared/common-constants';
 import { SnackbarComponent } from 'src/account-manager/shared/snackbar/snackbar.component';
 import { AuthService } from '../../services/auth.service';
 

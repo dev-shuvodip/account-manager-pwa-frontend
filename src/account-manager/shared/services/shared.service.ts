@@ -4,7 +4,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FirebaseSettings } from 'firebase.config';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { IGetUserResponse } from '../auth/models/IGetUserResponse';
 import CommonConstants from '../common-constants';
 
@@ -14,8 +13,6 @@ import CommonConstants from '../common-constants';
 export class SharedService {
   constructor(
     private httpClient: HttpClient,
-    private router: Router,
-    private _snackBar: MatSnackBar,
     public afAuth: AngularFireAuth
   ) { }
 

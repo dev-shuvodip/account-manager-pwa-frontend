@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
+import { A11yModule } from '@angular/cdk/a11y';
 
 import { ReportsRoutingModule } from './reports-routing.module';
 import { ReportsComponent } from './reports.component';
@@ -17,7 +18,8 @@ import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
     ReportsRoutingModule,
     MaterialModule,
     LoadingSpinnerComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    A11yModule
   ]
 })
 export class ReportsModule { }

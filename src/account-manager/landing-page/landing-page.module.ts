@@ -14,7 +14,8 @@ import { LandingPageComponent } from './landing-page.component';
   imports: [
     CommonModule,
     LandingPageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    A11yModule
   ],
   providers: []
 })

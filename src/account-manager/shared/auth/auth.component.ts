@@ -1,33 +1,11 @@
-import {
-    CommonModule,
-    NgFor,
-    NgIf
-} from "@angular/common";
-import {
-    HttpClient,
-    HttpClientModule
-} from "@angular/common/http";
 import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    FormsModule,
-    NgForm,
-    ReactiveFormsModule,
-    Validators
-} from "@angular/forms";
+    NgForm} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatIconRegistry } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { MaterialModule } from "src/account-manager/material/material.module";
 import CommonConstants from "../common-constants";
-import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.component";
 import { SnackbarComponent } from "../snackbar/snackbar.component";
-import { IAuthResponse } from "./models/IAuthResponse";
 import { AuthService } from "./services/auth.service";
 import { SignupComponent } from "./components/signup/signup.component";
 import { PasswordResetComponent } from "./components/password-reset/password-reset.component";

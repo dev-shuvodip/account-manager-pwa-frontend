@@ -18,7 +18,8 @@ import { SnackbarComponent } from '../shared/snackbar/snackbar.component';
     AddTransactionRoutingModule,
     MaterialModule,
     LoadingSpinnerComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    A11yModule
   ],
   providers: []
 })
