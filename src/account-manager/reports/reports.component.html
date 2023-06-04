@@ -1,11 +1,14 @@
-<div class="p-5">
-  <!-- Temporary placeholder. Will be removed upon further development -->
-  <mat-card style="z-index: -1">
-    <mat-card-content class="m-2">
-      <span class="card-content">
-        <b>{{ pageTitle }} page. Work in progress!</b>
-        <br>
-      </span>
-    </mat-card-content>
-  </mat-card>
+<div class="position-absolute top-50 start-50 translate-middle page-container">
+  <ng-container *ngIf="isLoading">
+    <loading-spinner></loading-spinner>
+  </ng-container>
+  <div *ngIf="!isLoading" class="page-content">
+    <mat-card class="card-content">
+      <mat-card-content class="m-2">
+        <span>
+          <b>{{ pageTitle }} page. Work in progress!</b>
+        </span>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

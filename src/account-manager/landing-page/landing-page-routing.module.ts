@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountManagerGuard } from '../account-manager.guard';
 
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./overview/overview.component').then(m => m.OverviewComponent)
+    canActivate: [AccountManagerGuard],
+    loadComponent: () => import('./components/overview/overview.component').then(m => m.OverviewComponent)
   }
 ];
 

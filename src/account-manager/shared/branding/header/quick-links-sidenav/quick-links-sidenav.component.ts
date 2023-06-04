@@ -2,8 +2,7 @@ import {
   Component,
   NgZone,
   OnInit,
-  ViewChild
-} from '@angular/core';
+  ViewChild} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/account-manager/shared/services/shared.service';

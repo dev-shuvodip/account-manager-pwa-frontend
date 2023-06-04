@@ -21,17 +21,17 @@ import {
 } from "rxjs/operators";
 import { IAuthResponse } from "../models/IAuthResponse";
 import { IRefreshToken } from "../models/IRefreshToken";
-import { IUser } from "../../models/IUser";
 import { User } from "../../models/User.model";
 import { Router } from "@angular/router";
 import CommonConstants from "../../common-constants";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { SnackbarComponent } from "../../snackbar/snackbar.component";
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { IUserUpdateResponse } from "../models/IUserUpdateResponse";
 import { IGetUserResponse } from "../models/IGetUserResponse";
+import { IEmailUpdateResponse } from "../models/IEmailUpdateResponse";
 
 @Injectable({
     providedIn: 'root'
@@ -62,7 +62,7 @@ export class AuthService {
      * requested type.
      */
     signup(email: string, password: string, displayName: string) {
-        const body: IUser = {
+        const body = {
             email: email,
             password: password,
             returnSecureToken: true
@@ -141,7 +141,7 @@ export class AuthService {
      * requested type.
      */
     login(email: string, password: string) {
-        const body: IUser = {
+        const body = {
             email: email,
             password: password,
             returnSecureToken: true
@@ -232,6 +232,34 @@ export class AuthService {
     }
 
     /**
+     * Updates user email on provided parameters
+     * by issuing an HTTP POST request to the Auth `setAccountInfo ` endpoint.
+     * and returns an observable of the response.
+     *
+     * @param idToken The id token issued for the current user.
+     * @param email User email
+     * @param _returnSecureToken Whether or not to return an ID and refresh token.
+     *
+     * @return  An `Observable` of the `IEmailUpdateResponse` for the request, with a response body in the
+     * requested type.
+     */
+    updateEmail(
+        idToken: string,
+        email: string,
+        _returnSecureToken?: boolean
+    ): Observable<IEmailUpdateResponse> {
+        const body = {
+            idToken: idToken,
+            email: email,
+            returnSecureToken: _returnSecureToken
+        }
+        return this.httpClient.post<IEmailUpdateResponse>(
+            `${CommonConstants.setAccountInfo}?key=${FirebaseSettings.apiKey}`,
+            body
+        )
+    }
+
+    /**
      * Automatically logs in the current user on load of application
      * based on the id token expiraion duration
      *
@@ -243,7 +271,7 @@ export class AuthService {
             _token: string;
             _refreshToken: string;
             _tokenExpirationdate: string;
-            _name: string;
+            name: string;
         } = JSON.parse(localStorage.getItem('user_data'));
 
         if (!userData) {
@@ -256,7 +284,7 @@ export class AuthService {
             userData._token,
             userData._refreshToken,
             new Date(userData._tokenExpirationdate),
-            userData._name
+            userData.name
         );
 
         if (loadedUser.token) {
@@ -316,18 +344,22 @@ export class AuthService {
                 SnackbarComponent,
                 {
                     data: 'Current session ended',
-                    duration: 2000
+                    duration: 2000,
+
                 }
             );
+
         }, tokenExpirationDuration)
         this._tokenExpirationWarningTimer = setTimeout(() => {
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
                     data: 'Your current session is about to end in 5 minutes',
-                    duration: 2000
+                    duration: 2000,
+
                 }
             );
+
         }, tokenExpirationDuration - 300000);
     }
 
@@ -336,14 +368,14 @@ export class AuthService {
      *
      */
     GoogleAuth() {
-        return this.AuthLogin(new GoogleAuthProvider());
+        return this.GoogleAuthLogin(new GoogleAuthProvider());
     }
 
     /**
      * Initiates Authentication using `Google Auth Provider`
      *
      */
-    async AuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
+    async GoogleAuthLogin(provider: firebase.auth.AuthProvider | GoogleAuthProvider) {
         try {
             const result = await this.afAuth
                 .signInWithPopup(provider).then(
@@ -368,17 +400,21 @@ export class AuthService {
                 SnackbarComponent,
                 {
                     data: 'Logged in successfully',
-                    duration: 2000
+                    duration: 2000,
+
                 }
             );
+
         } catch (error) {
             this._snackBar.openFromComponent(
                 SnackbarComponent,
                 {
                     data: error.message.split(':')[1].split('.')[0],
-                    duration: 2000
+                    duration: 2000,
+
                 }
             );
+
         }
     }
 

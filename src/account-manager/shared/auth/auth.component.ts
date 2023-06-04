@@ -1,33 +1,11 @@
+import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import {
-    CommonModule,
-    NgFor,
-    NgIf
-} from "@angular/common";
-import {
-    HttpClient,
-    HttpClientModule
-} from "@angular/common/http";
-import { Component, OnInit, ViewChild } from "@angular/core";
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    FormsModule,
-    NgForm,
-    ReactiveFormsModule,
-    Validators
-} from "@angular/forms";
+    NgForm} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatIconRegistry } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { MaterialModule } from "src/account-manager/material/material.module";
 import CommonConstants from "../common-constants";
-import { LoadingSpinnerComponent } from "../loading-spinner/loading-spinner.component";
 import { SnackbarComponent } from "../snackbar/snackbar.component";
-import { IAuthResponse } from "./models/IAuthResponse";
 import { AuthService } from "./services/auth.service";
 import { SignupComponent } from "./components/signup/signup.component";
 import { PasswordResetComponent } from "./components/password-reset/password-reset.component";
@@ -44,31 +22,21 @@ export class AuthComponent implements OnInit {
     isLoading: boolean = false;
     error: string | null = null;
     isAuthenticated: boolean = false;
-    logoURL = "";
+    @ViewChild('loginForm', { static: false }) loginForm: NgForm;
+    viewportInnerWidth: number = window.innerWidth;
 
     constructor(
-        private formBuilder: FormBuilder,
         public authService: AuthService,
         private _snackBar: MatSnackBar,
         private router: Router,
-        public dialog: MatDialog,
-        private matIconRegistry: MatIconRegistry,
-        private domSanitizer: DomSanitizer
+        public dialog: MatDialog
     ) {
         this.authService.user.subscribe({
             next: (user => {
                 this.isAuthenticated = !!user;
-                if (this.isAuthenticated) {
-                    this.router.navigate([CommonConstants.Landing]);
-                }
             })
         });
-
-        this.matIconRegistry.addSvgIcon(
-            "logo",
-            this.domSanitizer.bypassSecurityTrustResourceUrl(this.logoURL));
     }
-
 
     ngOnInit(): void { }
 
@@ -95,18 +63,22 @@ export class AuthComponent implements OnInit {
                             SnackbarComponent,
                             {
                                 data: 'Logged in successfully',
-                                duration: 2000
+                                duration: 2000,
+
                             }
                         );
+
                     } else {
                         this.isLoading = false;
                         this._snackBar.openFromComponent(
                             SnackbarComponent,
                             {
                                 data: 'Please verify your email. Check Spam/Junk folder and mark sender as not spam',
-                                duration: 5000
+                                duration: 5000,
+
                             }
                         );
+
                     }
                 },
                 error: (errorMessage) => {
@@ -138,6 +110,7 @@ export class AuthComponent implements OnInit {
     }
 
     openSignUpDialog() {
+        this.loginForm.reset();
         this.dialog.open(SignupComponent, {
             backdropClass: 'signUpBackdrop',
             hasBackdrop: true
@@ -146,10 +119,16 @@ export class AuthComponent implements OnInit {
     }
 
     openPasswordResetDialog() {
+        this.loginForm.reset();
         this.dialog.open(PasswordResetComponent, {
             backdropClass: 'passwordResetBackdrop',
             hasBackdrop: true
         });
         window.document.querySelector<any>('.passwordResetBackdrop').parentNode.style.zIndex = "9999";
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event: UIEvent) {
+        this.viewportInnerWidth = window.innerWidth;
     }
 }

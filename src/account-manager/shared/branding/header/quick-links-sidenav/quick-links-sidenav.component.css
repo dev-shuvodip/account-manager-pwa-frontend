@@ -41,6 +41,7 @@
 
 .mat-drawer-container {
   z-index: -1 !important;
+  background-color: white !important;
 }
 
 .mat-list-base .mat-list-item {

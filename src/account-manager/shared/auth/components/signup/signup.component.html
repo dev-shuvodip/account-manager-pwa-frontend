@@ -17,10 +17,42 @@
                 placeholder="John doe"
                 ngModel
                 name="displayName"
+                #displayName="ngModel"
                 required
                 minlength="3"
               />
-              <mat-error></mat-error>
+              <mat-error
+                *ngIf="displayName.errors && viewportInnerWidth >= 401"
+              >
+                <span class="warningSpan" *ngIf="displayName.errors['required']"
+                  >&#9888; Name is required</span
+                >
+                <span
+                  class="warningSpan"
+                  *ngIf="displayName.errors['minlength']"
+                  >&#9888; Name must be atleast 3 characters</span
+                >
+              </mat-error>
+              <mat-error *ngIf="displayName.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip1="matTooltip"
+                  (click)="tooltip1.toggle()"
+                  *ngIf="displayName.errors['required']"
+                  matTooltip="Name is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+                <span
+                  #tooltip2="matTooltip"
+                  (click)="tooltip2.toggle()"
+                  *ngIf="displayName.errors['minlength']"
+                  matTooltip="Name must be atleast 3 characters"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
             </mat-form-field>
           </section>
           <section>
@@ -31,10 +63,38 @@
                 placeholder="pat@example.com"
                 ngModel
                 name="email"
+                #email="ngModel"
                 required
                 email
               />
-              <mat-error></mat-error>
+              <mat-error *ngIf="email.errors && viewportInnerWidth >= 401"
+                ><span class="warningSpan" *ngIf="email.errors['required']"
+                  >&#9888; Email is required</span
+                >
+                <span class="warningSpan" *ngIf="email.errors['email']"
+                  >&#9888; Please enter a valid email</span
+                >
+              </mat-error>
+              <mat-error *ngIf="email.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip3="matTooltip"
+                  (click)="tooltip3.toggle()"
+                  *ngIf="email.errors['required']"
+                  matTooltip="Email is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+                <span
+                  #tooltip4="matTooltip"
+                  (click)="tooltip4.toggle()"
+                  *ngIf="email.errors['email']"
+                  matTooltip="Please enter a valid email"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
             </mat-form-field>
           </section>
           <section>
@@ -45,9 +105,11 @@
                 [type]="hide ? 'password' : 'text'"
                 ngModel
                 name="password"
+                #password="ngModel"
                 autocomplete="on"
                 required
-                minlength="6"
+                minlength="8"
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}"
               />
               <button
                 mat-icon-button
@@ -60,7 +122,36 @@
                   hide ? "visibility_off" : "visibility"
                 }}</mat-icon>
               </button>
-              <mat-error></mat-error>
+              <mat-error *ngIf="password.errors && viewportInnerWidth >= 401"
+                ><span class="warningSpan" *ngIf="password.errors['required']"
+                  >&#9888; Password is required</span
+                >
+                <span class="warningSpan" *ngIf="password.errors['pattern']"
+                  >&#9888; Password must be atleast 8 characters long, must
+                  contain alphanumeric and special characters
+                </span>
+              </mat-error>
+              <mat-error *ngIf="password.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip5="matTooltip"
+                  (click)="tooltip5.toggle()"
+                  *ngIf="password.errors['required']"
+                  matTooltip="Password is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+                <span
+                  #tooltip6="matTooltip"
+                  (click)="tooltip6.toggle()"
+                  *ngIf="password.errors['pattern']"
+                  matTooltip="Password must be atleast 8 characters long, must
+                  contain alphanumeric and special characters"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
             </mat-form-field>
           </section>
         </span>

@@ -1,8 +1,3 @@
-.form-container mat-form-field + mat-form-field {
-  margin-left: 8px;
-  max-width: 600px;
-}
-
 .page-container {
   max-height: calc(100vh - 100px);
   max-width: calc(100vw - 100px);
@@ -15,38 +10,45 @@
   width: 100%;
   top: 0;
   bottom: 0;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
 }
 
-.field-container {
-  width: 50vw;
+.mat-card-content {
+  margin-bottom: 0 !important;
 }
 
 mat-card-actions {
   margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
-section {
+.form-button-section {
   display: table;
-}
-
-.form-button-row {
-  display: table-cell;
+  margin-top: 5px;
 }
 
 .form-button-row .mat-mdc-button-base {
   margin: 8px 8px 8px 0;
 }
 
-/* .botton-overlay {
-  margin: 3px 2px 2px 0 !important;
-} */
+.social-botton-overlay {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.social-botton-overlay-small {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .mat-card-actions .mat-button,
 .mat-card-actions .mat-raised-button,
-.mat-card-actions .mat-stroked-button {
-  margin: 3px 2px 2px 0 !important;
+.mat-card-actions .mat-stroked-button,
+.mat-card-actions .mat-icon-button {
+  margin: 15px -50% 0 0 !important;
 }
 
 .mat-card {
@@ -73,5 +75,22 @@ section {
 .forgotPwdBtn {
   float: right;
   padding: 0px;
-  line-height: 0px;
+}
+
+.warningSpan {
+  content: "\26A0";
+}
+
+.social-divider {
+  text-align: center;
+  line-height: 0em;
+  margin: 25px;
+  border-bottom: 1px solid rgb(173 173 173);
+}
+
+.social-divider span {
+  background: #fff;
+  padding: 0 10px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.65);
 }

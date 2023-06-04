@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import CommonConstants from '../../../common-constants';
 import { SnackbarComponent } from '../../../snackbar/snackbar.component';
-import { IAuthResponse } from '../../models/IAuthResponse';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -14,30 +12,20 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   hide: boolean = true;
   isLoading: boolean = false;
   error: string | null = null;
-  isAuthenticated: boolean = false;
+  viewportInnerWidth: number = window.innerWidth;
 
   constructor(
     public authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router,
     public dialog: MatDialog
-  ) {
-    this.authService.user.subscribe({
-      next: (user => {
-        this.isAuthenticated = !!user;
-      })
-    });
-  }
+  ) { }
 
-  ngOnInit(): void {
-    if (this.isAuthenticated) {
-      this.router.navigate([CommonConstants.Landing]);
-    }
-  }
+  ngOnInit(): void { }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
@@ -64,6 +52,7 @@ export class SignupComponent implements OnInit {
                 duration: 2000
               }
             );
+
             this.dialog.closeAll();
             this.isLoading = false;
           } else {
@@ -74,6 +63,7 @@ export class SignupComponent implements OnInit {
                 duration: 5000
               }
             );
+
             this.dialog.closeAll();
             this.isLoading = false;
           }
@@ -93,8 +83,17 @@ export class SignupComponent implements OnInit {
       SnackbarComponent,
       {
         data: this.error,
-        duration: 2000
+        duration: 2000,
+
       }
     );
+
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: UIEvent) {
+    this.viewportInnerWidth = window.innerWidth;
+  }
+
+  ngOnDestroy(): void { }
 }

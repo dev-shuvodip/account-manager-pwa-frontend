@@ -26,7 +26,10 @@
   <span class="header-spacer"></span>
   <ng-container *ngIf="isAuthenticated">
     <div *ngIf="viewportInnerWidth >= 480">
-      <button *ngIf="loadDisplayName()" mat-button>
+      <button
+        *ngIf="loadDisplayName()"
+        mat-button
+      >
         <span> Hi, {{ loadDisplayName() }} </span>
       </button>
       <button mat-button (click)="onLogout()">
@@ -42,7 +45,10 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button *ngIf="loadDisplayName()" mat-menu-item>
+      <button
+        *ngIf="loadDisplayName()"
+        mat-menu-item
+      >
         <span> Hi, {{ loadDisplayName() }} </span>
       </button>
       <button mat-menu-item (click)="onLogout()">

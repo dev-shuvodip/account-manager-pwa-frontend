@@ -10,81 +10,140 @@
         type="button"
         class="botton-overlay"
         color="primary"
+        *ngIf="viewportInnerWidth >= 321"
         (click)="onModeSwitch()"
       >
         New user? Sign Up here
       </button>
+      <button
+        mat-mini-fab
+        type="button"
+        class="botton-overlay"
+        color="primary"
+        *ngIf="viewportInnerWidth < 321"
+        (click)="onModeSwitch()"
+      >
+        <mat-icon>person_add_alt</mat-icon>
+      </button>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <mat-card-content>
-          <span class="card-content">
-            <br />
-            <section>
-              <mat-form-field appearance="outline" class="field-container">
-                <mat-label>Enter email</mat-label>
-                <input
-                  matInput
-                  placeholder="pat@example.com"
-                  ngModel
-                  name="email"
-                  required
-                  email
-                />
-                <mat-error></mat-error>
-              </mat-form-field>
-            </section>
-            <section>
-              <mat-form-field appearance="outline" class="field-container">
-                <mat-label>Enter password</mat-label>
-                <input
-                  matInput
-                  [type]="hide ? 'password' : 'text'"
-                  ngModel
-                  name="password"
-                  autocomplete="off"
-                  required
-                  minlength="6"
-                />
-                <button
-                  mat-icon-button
-                  matSuffix
-                  (click)="hide = !hide"
-                  [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
-                  [attr.aria-pressed]="hide"
+          <br />
+          <section>
+            <mat-form-field appearance="outline">
+              <mat-label>Enter email</mat-label>
+              <input
+                matInput
+                placeholder="pat@example.com"
+                ngModel
+                name="email"
+                required
+                email
+                #email="ngModel"
+              />
+              <mat-error *ngIf="email.errors && viewportInnerWidth >= 401"
+                ><span class="warningSpan" *ngIf="email.errors['required']"
+                  >&#9888; Email is required</span
                 >
-                  <mat-icon>{{
-                    hide ? "visibility_off" : "visibility"
-                  }}</mat-icon>
-                </button>
-                <mat-error></mat-error>
-              </mat-form-field>
-              <button
-                class="forgotPwdBtn"
-                mat-button
-                (click)="openPasswordResetDialog()"
+                <span class="warningSpan" *ngIf="email.errors['email']"
+                  >&#9888; Please enter a valid email</span
+                ></mat-error
               >
-                Forgot password?
+              <mat-error *ngIf="email.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip1="matTooltip"
+                  (click)="tooltip1.toggle()"
+                  *ngIf="email.errors['required']"
+                  matTooltip="Email is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+                <span
+                  #tooltip2="matTooltip"
+                  (click)="tooltip2.toggle()"
+                  *ngIf="email.errors['email']"
+                  matTooltip="Please enter a valid email"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </section>
+          <section>
+            <mat-form-field appearance="outline">
+              <mat-label>Enter password</mat-label>
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                ngModel
+                name="password"
+                #password="ngModel"
+                autocomplete="off"
+                required
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="hide ? 'Show password' : 'Hide Password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <mat-error *ngIf="password.errors && viewportInnerWidth >= 401"
+                ><span class="warningSpan" *ngIf="password.errors['required']"
+                  >&#9888; Password is required</span
+                >
+              </mat-error>
+              <mat-error *ngIf="password.errors && viewportInnerWidth < 401">
+                <span
+                  #tooltip3="matTooltip"
+                  (click)="tooltip3.toggle()"
+                  *ngIf="password.errors['required']"
+                  matTooltip="Password is required"
+                  matTooltipPosition="below"
+                  class="warningSpan"
+                  >&#9888;</span
+                >
+              </mat-error>
+            </mat-form-field>
+          </section>
+          <section>
+            <button
+              mat-button
+              type="button"
+              class="forgotPwdBtn"
+              (click)="openPasswordResetDialog()"
+            >
+              Reset password
             </button>
-            </section>
-          </span>
+          </section>
         </mat-card-content>
         <mat-card-actions>
-          <section>
-            <div class="form-button-row">
-              <button
-                mat-raised-button
-                type="submit"
-                class="botton-overlay"
-                color="primary"
-                [disabled]="!loginForm.valid"
-              >
-                <mat-icon class="icon-overlay">login</mat-icon>
+          <section class="form-button-section">
+            <button
+              mat-raised-button
+              type="submit"
+              class="botton-overlay"
+              color="primary"
+              [disabled]="!loginForm.valid"
+            >
+              <mat-icon class="icon-overlay">login</mat-icon>
 
-                <span>Login</span>
-              </button>
-              <span class="spacer-span"></span>
+              <span>Login</span>
+            </button>
+            <span class="spacer-span"></span>
+          </section>
+          <div class="social-divider"><span>or</span></div>
+          <section>
+            <div *ngIf="viewportInnerWidth >= 321" class="form-button-row">
               <button
                 type="button"
                 mat-raised-button
+                class="social-botton-overlay"
                 (click)="loginWithGoogle()"
               >
                 <img
@@ -94,6 +153,21 @@
                 />
                 Sign in with Google
               </button>
+              <span class="spacer-span"></span>
+            </div>
+            <div *ngIf="viewportInnerWidth < 321" class="form-button-row">
+              <button
+                class="social-botton-overlay-small"
+                mat-icon-button
+                type="button"
+                (click)="loginWithGoogle()"
+              >
+                <img
+                  src="data:image/png;base64,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"
+                  alt=""
+                />
+              </button>
+              <span class="spacer-span"></span>
             </div>
           </section>
         </mat-card-actions>

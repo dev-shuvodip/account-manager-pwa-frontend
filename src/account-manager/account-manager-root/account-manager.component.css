@@ -1,10 +1,24 @@
 .header {
   position: fixed;
   width: 100%;
+  z-index: 9999;
 }
 
 .body-container {
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x:hidden;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.footer {
+  z-index: 9999;
+}
+
+svg {
+  margin: auto;
+    background: #ffffff;
+    display: block;
+    z-index: 0;
+    position: fixed;
+    overflow: hidden;
 }

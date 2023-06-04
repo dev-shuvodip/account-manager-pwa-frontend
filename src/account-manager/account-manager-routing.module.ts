@@ -1,36 +1,44 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OverviewComponent } from './landing-page/overview/overview.component';
-import { AuthComponent } from './shared/auth/auth.component';
-import { AuthGuard } from './shared/auth/services/auth.guard';
+import { AccountManagerGuard } from './account-manager.guard';
 import CommonConstants from './shared/common-constants';
+import { AuthGuard } from './shared/auth/services/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: CommonConstants.Landing, pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: CommonConstants.Landing,
+    pathMatch: 'full'
+  },
   {
     path: CommonConstants.Authenticate,
-    component: AuthComponent
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./shared/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Landing)?.value,
-    canActivate: [AuthGuard],
+    canActivate: [AccountManagerGuard],
     loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule)
   },
   {
     path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.TransactionManagement)?.value,
-    canActivate: [AuthGuard],
+    canActivate: [AccountManagerGuard],
     loadChildren: () => import('./add-transaction/add-transaction.module').then(m => m.AddTransactionModule)
   },
   {
     path: CommonConstants.ModulesRoutes.find(e => e.key == CommonConstants.Reports)?.value,
-    canActivate: [AuthGuard],
+    canActivate: [AccountManagerGuard],
     loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule)
   },
-  { path: '**', redirectTo: CommonConstants.Landing, pathMatch: 'full' }
+  {
+    path: '**',
+    redirectTo: CommonConstants.Landing,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AccountManagerRoutingModule { }

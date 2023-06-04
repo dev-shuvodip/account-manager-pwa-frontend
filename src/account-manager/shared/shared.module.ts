@@ -9,27 +9,28 @@ import {
 } from '@angular/forms';
 import { A11yModule } from '@angular/cdk/a11y';
 import { QuickLinksSidenavComponent } from './branding/header/quick-links-sidenav/quick-links-sidenav.component';
-import { AuthComponent } from './auth/auth.component';
-import { AuthService } from './auth/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { SignupComponent } from './auth/components/signup/signup.component';
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
+import { AuthModule } from './auth/auth.module';
+import { WarningDialog } from './warning/warning.dialog';
+
 @NgModule({
   declarations: [
-    AuthComponent,
     HeaderComponent,
     FooterComponent,
     QuickLinksSidenavComponent,
     SignupComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    WarningDialog
   ],
   exports: [
-    AuthComponent,
     HeaderComponent,
     FooterComponent,
     QuickLinksSidenavComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    WarningDialog
   ],
   imports: [
     CommonModule,
@@ -37,7 +38,9 @@ import { PasswordResetComponent } from './auth/components/password-reset/passwor
     LoadingSpinnerComponent,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    A11yModule,
+    AuthModule
   ],
   providers: [DatePipe]
 })
