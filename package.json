@@ -25,7 +25,7 @@
     "update-package-lock": "npm i --package-lock-only",
     "build-gh-pages": "ng build --base-href=/account-manager-pwa-frontend/",
     "build-dist": "ng build --output-path dist/account-manager-pwa-frontend --base-href=/",
-    "deploy-gh-pages": "ng deploy --base-href=/account-manager-pwa-frontend/ --repo=https://github.com/dev-shuvodip/account-manager-pwa-frontend.git --name=\"dev-shuvodip\" --email=chrispbacon961@gmail.com",
+    "deploy-gh-pages": "ng deploy --base-href=/account-manager-pwa-frontend/ --repo=https://github.com/dev-shuvodip/account-manager-pwa-frontend.git --name=\"Shuvodip Ray\" --email=chrispbacon961@gmail.com",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
