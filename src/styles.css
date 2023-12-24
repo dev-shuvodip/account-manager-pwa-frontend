@@ -24,8 +24,17 @@ body {
   backdrop-filter: blur(10px);
 }
 
-.mat-form-field {
+.mat-mdc-form-field {
   width: -webkit-fill-available !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__content {
+  padding-top: 24px !important;
+}
+
+.mat-mdc-card {
+  margin: 10px !important;
+  padding: 24px !important;
 }
 
 :host::-webkit-scrollbar,
@@ -40,4 +49,8 @@ body {
 :host ::ng-deep ::-webkit-scrollbar-thumb {
   background: blue;
   border-radius: 10px;
+}
+
+.dialog-container {
+  margin: 10px !important;
 }

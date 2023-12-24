@@ -1,11 +1,5 @@
 import { Injectable } from "@angular/core";
-import {
-    ActivatedRouteSnapshot,
-    CanActivate,
-    Router,
-    RouterStateSnapshot,
-    UrlTree
-} from "@angular/router";
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { map, Observable } from "rxjs";
 import CommonConstants from "./shared/common-constants";
 import { AuthService } from "./shared/auth/services/auth.service";
@@ -14,7 +8,7 @@ import { AuthService } from "./shared/auth/services/auth.service";
     providedIn: 'root'
 })
 
-export class AccountManagerGuard implements CanActivate {
+export class AccountManagerGuard {
     constructor(
         private authService: AuthService,
         private router: Router

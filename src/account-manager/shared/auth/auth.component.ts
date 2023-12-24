@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from "@angular/core";
 import {
-    NgForm} from "@angular/forms";
+    NgForm
+} from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
