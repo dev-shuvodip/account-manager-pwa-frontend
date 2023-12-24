@@ -5,7 +5,7 @@ MIT
 MIT
 The MIT License
 
-Copyright (c) 2022 Google LLC.
+Copyright (c) 2023 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -29,9 +29,6 @@ THE SOFTWARE.
 @angular/common
 MIT
 
-@angular/compiler
-MIT
-
 @angular/core
 MIT
 
@@ -51,7 +48,7 @@ MIT
 MIT
 The MIT License
 
-Copyright (c) 2022 Google LLC.
+Copyright (c) 2023 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -107,13 +104,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-@firebase/analytics
-Apache-2.0
-
 @firebase/app
-Apache-2.0
-
-@firebase/app-check
 Apache-2.0
 
 @firebase/app-compat
@@ -128,16 +119,7 @@ Apache-2.0
 @firebase/component
 Apache-2.0
 
-@firebase/installations
-Apache-2.0
-
 @firebase/logger
-Apache-2.0
-
-@firebase/messaging
-Apache-2.0
-
-@firebase/remote-config
 Apache-2.0
 
 @firebase/util
@@ -196,8 +178,7 @@ bootstrap
 MIT
 The MIT License (MIT)
 
-Copyright (c) 2011-2022 Twitter, Inc.
-Copyright (c) 2011-2022 The Bootstrap Authors
+Copyright (c) 2011-2023 The Bootstrap Authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -218,21 +199,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-firebase/analytics
-
 firebase/app
-
-firebase/app-check
 
 firebase/auth
 
 firebase/compat/app
 
 firebase/compat/auth
-
-firebase/messaging
-
-firebase/remote-config
 
 idb
 ISC
@@ -469,7 +442,7 @@ zone.js
 MIT
 The MIT License
 
-Copyright (c) 2010-2022 Google LLC. https://angular.io/license
+Copyright (c) 2010-2023 Google LLC. https://angular.io/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
