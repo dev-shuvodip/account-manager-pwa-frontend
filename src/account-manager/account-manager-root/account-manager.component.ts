@@ -26,10 +26,8 @@ export class AccountManagerComponent {
           case 'VERSION_DETECTED':
             break;
           case 'VERSION_READY':
-            if (confirm("You're using an old version of the application. Want to update now?")) {
+            if (confirm("You're using an old version of the application. Want to update ?")) {
               window.location.reload();
-            } else {
-              setTimeout(() => window.alert("Update will be installed after 5 minutes. Unsaved changes will be lost."), 600000);
             }
             break;
           case 'VERSION_INSTALLATION_FAILED':
