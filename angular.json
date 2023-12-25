@@ -54,8 +54,15 @@
               ],
               "outputHashing": "none",
               "buildOptimizer": true,
-              "optimization": true,
-              "vendorChunk": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "vendorChunk": false,
               "extractLicenses": true,
               "sourceMap": false,
               "namedChunks": false
