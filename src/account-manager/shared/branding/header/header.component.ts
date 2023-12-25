@@ -15,6 +15,7 @@ import { AuthService } from '../../auth/services/auth.service';
 import CommonConstants from '../../common-constants';
 import { SnackbarComponent } from '../../snackbar/snackbar.component';
 import { QuickLinksSidenavComponent } from './quick-links-sidenav/quick-links-sidenav.component';
+import { User } from '../../models/User.model';
 
 @Component({
   selector: 'app-header',
@@ -43,14 +44,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   loadDisplayName() {
-    const userData: {
-      email: string;
-      id: string;
-      _token: string;
-      _refreshToken: string;
-      _tokenExpirationdate: string;
-      name?: string
-    } = JSON.parse(localStorage.getItem('user_data'));
+    const userData: User = JSON.parse(localStorage.getItem('user_data'));
 
     if (!userData)
       return null
