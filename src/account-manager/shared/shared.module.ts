@@ -15,6 +15,7 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import { PasswordResetComponent } from './auth/components/password-reset/password-reset.component';
 import { AuthModule } from './auth/auth.module';
 import { WarningDialog } from './warning/warning.dialog';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { WarningDialog } from './warning/warning.dialog';
     ReactiveFormsModule,
     HttpClientModule,
     A11yModule,
-    AuthModule
+    AuthModule,
+    RouterModule
   ],
   providers: [DatePipe]
 })

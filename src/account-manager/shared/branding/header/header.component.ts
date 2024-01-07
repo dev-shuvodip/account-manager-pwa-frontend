@@ -31,8 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   screenOrientation: string = window.screen.orientation.type;
 
   constructor(
-    private router: Router,
-    private zone: NgZone,
     private authService: AuthService,
     private _snackBar: MatSnackBar
   ) { }
@@ -49,12 +47,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (!userData)
       return null
     return userData.name;
-  }
-
-  Navigate(e: any) {
-    this.zone.run(() => {
-      this.router.navigate([e.currentTarget.dataset.link]);
-    })
   }
 
   @HostListener('window:resize', ['$event'])

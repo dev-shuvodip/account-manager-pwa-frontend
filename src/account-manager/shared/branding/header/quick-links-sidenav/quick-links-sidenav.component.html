@@ -20,13 +20,12 @@
         [matRippleCentered]="false"
         [matRippleDisabled]="false"
         [matRippleUnbounded]="false"
-        *ngFor="let route of routesModule"
+        *ngFor="let route of routesModule; trackBy: trackByFn"
         attr.aria-label="{{
           route?.displayText
         }}. Press enter to navigate to the page"
-        attr.data-link="{{ route?.key }}"
-        (click)="Navigate($event)"
-        (keyup.enter)="Navigate($event)"
+        (click)="sideNav.close()"
+        [routerLink]="route?.key"
       >
         {{ route?.displayText }}
       </a>

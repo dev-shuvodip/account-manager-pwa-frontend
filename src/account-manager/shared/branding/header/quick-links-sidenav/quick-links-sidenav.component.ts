@@ -2,9 +2,11 @@ import {
   Component,
   NgZone,
   OnInit,
-  ViewChild} from '@angular/core';
+  ViewChild
+} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { IRoute } from 'src/account-manager/shared/models/IRoute';
 import { SharedService } from 'src/account-manager/shared/services/shared.service';
 
 @Component({
@@ -13,11 +15,9 @@ import { SharedService } from 'src/account-manager/shared/services/shared.servic
   styleUrls: ['./quick-links-sidenav.component.css']
 })
 export class QuickLinksSidenavComponent implements OnInit {
-  routesModule!: { key?: string, value?: string, displayText?: string }[];
+  routesModule!: IRoute[];
 
   constructor(
-    private router: Router,
-    private zone: NgZone,
     private sharedService: SharedService
   ) { }
 
@@ -27,10 +27,7 @@ export class QuickLinksSidenavComponent implements OnInit {
 
   @ViewChild('sidenav') sideNav!: MatSidenav;
 
-  Navigate(e: any) {
-    this.zone.run(() => {
-      this.router.navigate([e.currentTarget.dataset.link]);
-      this.sideNav.toggle()
-    })
+  trackByFn(index: number, item: IRoute) {
+    return index;
   }
 }
