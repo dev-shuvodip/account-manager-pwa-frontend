@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1703534192036,
+  "timestamp": 1704623233507,
   "index": "/account-manager-pwa-frontend/index.html",
   "assetGroups": [
     {
@@ -65,7 +65,7 @@
     "/account-manager-pwa-frontend/assets/icons/icon-96x96.png": "567d6cb36be826ebb488c2cc347abe5aa5bf3efb",
     "/account-manager-pwa-frontend/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/account-manager-pwa-frontend/index.html": "07375a4c4c22ed7282b6c8f325af16113f23310f",
-    "/account-manager-pwa-frontend/main.js": "fa5bba7c614057d730b55ec2fa51a0f1ab8a511b",
+    "/account-manager-pwa-frontend/main.js": "2a4256548cc9b17315bfd6966f368791f3fa867b",
     "/account-manager-pwa-frontend/manifest.webmanifest": "5d13cde3694b44f872879a1123a69e86e70cee9a",
     "/account-manager-pwa-frontend/polyfills.js": "c98727addf248a55a7d0908ea89b50b66869f5d1",
     "/account-manager-pwa-frontend/runtime.js": "6f520e25c6f168187ab81ab892d308751ab2ddcb",
